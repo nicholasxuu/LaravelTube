@@ -8,19 +8,23 @@ use Illuminate\Database\Eloquent\Model;
  * Class Video.
  *
  * @property $name
- * @property $category
+ * @property $category_id
  * @property $path
  * @property $likes
  * @property $dislikes
  */
 class Video extends Model
 {
+    protected $table = 'videos';
+
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'category', 'path', 'user_id'];
+    protected $fillable = ['name', 'category_id', 'path', 'user_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,7 +40,7 @@ class Video extends Model
      */
     public function getUser()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -46,7 +50,7 @@ class Video extends Model
      */
     public function getLikesDislikes()
     {
-        return $this->hasMany(\App\LikeDislike::class);
+        return $this->hasMany(LikeDislike::class);
     }
 
     /**
@@ -56,7 +60,7 @@ class Video extends Model
      */
     public function likes()
     {
-        return $this->hasMany(\App\LikeDislike::class)->likes();
+        return $this->hasMany(LikeDislike::class)->likes();
     }
 
     /**
@@ -66,7 +70,7 @@ class Video extends Model
      */
     public function dislikes()
     {
-        return $this->hasMany(\App\LikeDislike::class)->dislikes();
+        return $this->hasMany(LikeDislike::class)->dislikes();
     }
 
     /**
@@ -76,6 +80,14 @@ class Video extends Model
      */
     public function getComments()
     {
-        return $this->hasMany(\App\Comment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getCategory()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }
