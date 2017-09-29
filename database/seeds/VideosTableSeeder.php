@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\User;
 use App\Video;
 use Chrisbjr\ApiGuard\Models\ApiKey;
@@ -16,9 +17,10 @@ class VideosTableSeeder extends Seeder
     public function run()
     {
         $user = $this->createUser();
+        $category = Category::find(1);
         $video = new Video();
         $video->name = 'demo';
-        $video->category = 'Movie';
+        $video->category_id = $category->id;
         $video->path = Storage::url('videos/demo');
 
         $user->getVideos()->save($video);

@@ -44,7 +44,7 @@ class LikeDislikeAPITest extends TestCase
         $faker = Faker\Factory::create();
         $video = new Video();
         $video->name = $faker->sentence;
-        $video->category = $faker->word;
+        $video->category_id = 0;
         $video->path = $faker->url;
         $user->getVideos()->save($video);
 

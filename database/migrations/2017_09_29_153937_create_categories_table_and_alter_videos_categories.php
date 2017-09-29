@@ -16,6 +16,8 @@ class CreateCategoriesTableAndAlterVideosCategories extends Migration
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
+
+            $table->index('name');
         });
 
         Schema::table('videos', function($table) {

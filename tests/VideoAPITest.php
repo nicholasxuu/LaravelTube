@@ -49,7 +49,7 @@ class VideoAPITest extends TestCase
         $faker = Faker\Factory::create();
         $video = new Video();
         $video->name = $faker->sentence;
-        $video->category = $faker->word;
+        $video->category_id = 0;
         $video->path = $faker->url;
         $user->getVideos()->save($video);
 
@@ -130,7 +130,7 @@ class VideoAPITest extends TestCase
     {
         $user = $this->createUser();
         $video = $this->createFakeVideo($user);
-        $this->get('/api/videos/user/'.$user->id)->seeJsonContains(['name' => $video->name, 'category' => $video->category, 'path' => $video->path])
+        $this->get('/api/videos/user/'.$user->id)->seeJsonContains(['name' => $video->name, 'category' => $video->category_id, 'path' => $video->path])
             ->seeStatusCode(200);
     }
 
@@ -143,7 +143,7 @@ class VideoAPITest extends TestCase
     {
         $user = $this->createUser();
         $video = $this->createFakeVideo($user);
-        $this->get('/api/videos/category/'.$video->category)->seeJsonContains(['name' => $video->name, 'category' => $video->category, 'path' => $video->path])
+        $this->get('/api/videos/category/'.$video->category_id)->seeJsonContains(['name' => $video->name, 'category' => $video->category, 'path' => $video->path])
             ->seeStatusCode(200);
     }
 
@@ -156,7 +156,7 @@ class VideoAPITest extends TestCase
     {
         $user = $this->createUser();
         $video = $this->createFakeVideo($user);
-        $this->get('/api/videos/'.$video->id)->seeJsonContains(['name' => $video->name, 'category' => $video->category, 'path' => $video->path])
+        $this->get('/api/videos/'.$video->id)->seeJsonContains(['name' => $video->name, 'category' => $video->category_id, 'path' => $video->path])
             ->seeStatusCode(200);
     }
 
@@ -218,7 +218,7 @@ class VideoAPITest extends TestCase
     {
         $user = $this->createUser();
         $video = $this->createFakeVideo($user);
-        $data = ['name' => $video->name, 'category' => $video->category, 'path' => $video->path];
+        $data = ['name' => $video->name, 'category' => $video->category_id, 'path' => $video->path];
         $this->delete('/api/videos/'.$video->id, ['X-Authorization' => $user->apiKey->key])->notSeeInDatabase('videos', $data);
         $this->get('/api/videos')->dontSeeJson($data)->seeStatusCode(200);
     }
@@ -232,7 +232,7 @@ class VideoAPITest extends TestCase
     {
         $user = $this->createUser();
         $video = $this->createFakeVideo($user);
-        $data = ['name' => $video->name, 'category' => $video->category, 'path' => $video->path];
+        $data = ['name' => $video->name, 'category' => $video->category_id, 'path' => $video->path];
         $this->get('/api/videos/search/'.$video->name)->seeJson($data)->seeStatusCode(200);
     }
 }
