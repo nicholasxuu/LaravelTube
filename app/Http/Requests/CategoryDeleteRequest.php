@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class VideoUploadRequest extends Request
+class CategoryDeleteRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,7 @@ class VideoUploadRequest extends Request
     public function rules()
     {
         return [
-            'name'     => 'required|max:255',
-            'category_id' => 'required',
-            'video'    => 'required|max:2048|mimes:mp4',
+            'id' => 'required',
         ];
     }
 }

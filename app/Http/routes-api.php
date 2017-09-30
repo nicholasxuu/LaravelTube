@@ -2,32 +2,32 @@
 
 Route::group(['prefix' => 'api/'], function () {
     //Api Videos
-    Route::get('videos', 'VideoController@getAllVideos');
-    Route::get('videos/best', 'VideoController@getBestVideos');
-    Route::get('videos/user/{id}', 'VideoController@getVideosUser');
-    Route::get('videos/category/{name}', 'VideoController@getVideosForCategory');
-    Route::get('videos/search/{name}', 'VideoController@getVideosForSearch');
-    Route::post('videos', 'VideoController@store');
-    Route::get('videos/{id}', 'VideoController@show');
-    Route::put('videos/{id}', 'VideoController@update');
-    Route::delete('videos/{id}', 'VideoController@destroy');
+    Route::get('videos', 'api/VideoController@getAllVideos');
+    Route::get('videos/best', 'api/VideoController@getBestVideos');
+    Route::get('videos/user/{id}', 'api/VideoController@getVideosUser');
+    Route::get('videos/category/{name}', 'api/VideoController@getVideosForCategory');
+    Route::get('videos/search/{name}', 'api/VideoController@getVideosForSearch');
+    Route::post('videos', 'api/VideoController@store');
+    Route::get('videos/{id}', 'api/VideoController@show');
+    Route::put('videos/{id}', 'api/VideoController@update');
+    Route::delete('videos/{id}', 'api/VideoController@destroy');
 
     //Likes
-    Route::get('videos/{id}/likes', 'LikeDislikeController@getLikes');
-    Route::get('videos/{id}/likes/count', 'LikeDislikeController@getLikesCount');
-    Route::get('videos/{id}/dislikes', 'LikeDislikeController@getDislikes');
-    Route::get('videos/{id}/dislikes/count', 'LikeDislikeController@getDislikesCount');
-    Route::post('videos/{id}/like-dislike', 'LikeDislikeController@store');
+    Route::get('videos/{id}/likes', 'api/LikeDislikeController@getLikes');
+    Route::get('videos/{id}/likes/count', 'api/LikeDislikeController@getLikesCount');
+    Route::get('videos/{id}/dislikes', 'api/LikeDislikeController@getDislikes');
+    Route::get('videos/{id}/dislikes/count', 'api/LikeDislikeController@getDislikesCount');
+    Route::post('videos/{id}/like-dislike', 'api/LikeDislikeController@store');
 
     //User
-    Route::get('users/', 'UserController@getAllUsers');
-    Route::get('users/{id}', 'UserController@show');
-    Route::post('users/{id}', 'UserController@update');
-    Route::delete('users/{id}', 'UserController@delete');
+    Route::get('users/', 'api/UserController@getAllUsers');
+    Route::get('users/{id}', 'api/UserController@show');
+    Route::post('users/{id}', 'api/UserController@update');
+    Route::delete('users/{id}', 'api/UserController@delete');
 
     //Comments
-    Route::get('videos/{id}/comments', 'CommentController@getComments');
-    Route::post('videos/{id}/comments', 'CommentController@store');
-    Route::put('videos/{video_id}/comments', 'CommentController@update');
-    Route::delete('videos/{video_id}/comments', 'CommentController@delete');
+    Route::get('videos/{id}/comments', 'api/CommentController@getComments');
+    Route::post('videos/{id}/comments', 'api/CommentController@store');
+    Route::put('videos/{video_id}/comments', 'api/CommentController@update');
+    Route::delete('videos/{video_id}/comments', 'api/CommentController@delete');
 });

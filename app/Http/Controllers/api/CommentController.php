@@ -36,7 +36,7 @@ class CommentController extends ApiGuardController
         'store' => [
             'limits' => [
                 'key' => [
-                    'increment' => '1 hour',
+                    'increment' => '1 minute',
                     'limit'     => 10,
                 ],
             ],
