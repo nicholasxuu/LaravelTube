@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Http\Requests\VideoUploadRequest;
+use App\Repositories\CategoryRepository;
 use App\Repositories\UserRepository as User;
 use App\Repositories\VideoRepository as Video;
 use App\Transformers\VideoTransformer;
@@ -107,10 +108,18 @@ class VideoController extends ApiGuardController
 
     /**
      * Return Videos for Category.
+     * @param $name
+     * @param CategoryRepository $categoryRepository
+     * @return mixed
      */
-    public function getVideosForCategory($name)
+    public function getVideosForCategory($name, CategoryRepository $categoryRepository)
     {
-        $video = $this->video->findBy('category', $name);
+        $category = $categoryRepository->findBy('name', $name)->first();
+        $categoryId = 0;
+        if ($category) {
+            $categoryId = $category->id;
+        }
+        $video = $this->video->findBy('category_id', $categoryId);
 
         return $this->response->withCollection($video, $this->videoTransformer);
     }
@@ -140,7 +149,7 @@ class VideoController extends ApiGuardController
 
         $data = [
             'name'     => $request->input('name'),
-            'category' => $request->input('category'),
+            'category_id' => $request->input('category_id'),
             'path'     => Storage::url('videos/'.$nameFile),
             'user_id'  => $user->id,
         ];
@@ -185,8 +194,6 @@ class VideoController extends ApiGuardController
      * Remove the specified video from storage.
      *
      * @param $id
-     *
-     * @return mixed
      */
     public function destroy($id)
     {

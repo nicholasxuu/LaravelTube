@@ -9,9 +9,12 @@
 namespace App\Repositories;
 
 
+use App\Category;
+use App\Repositories\Eloquent\Repository;
+
 class CategoryRepository extends Repository
 {
-    protected function model()
+    public function model()
     {
         return Category::class;
     }

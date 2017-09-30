@@ -8,7 +8,7 @@
                     <source :src=video.path+'.mp4' type='video/mp4'>
                 </video>
                 <div class="card-block" id="card-block{{video.id}}">
-                    <p class='label label-info pull-right'>{{video.category}}</p>
+                    <p class='label label-info pull-right'>{{video.category_id}}</p>
                     <h4 class="card-text">{{ video.name.substring(0,20) }}</h4>
                     <button type="button" id="dislikes-card-block{{video.id}}" class="btn btn-danger pull-right"><i class="fa fa-thumbs-o-down" aria-hidden="true">{{video.dislikes}}</i></button>
                     <button type="button" id="likes-card-block{{video.id}}" class="btn btn-success"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{video.likes}}</i></button>

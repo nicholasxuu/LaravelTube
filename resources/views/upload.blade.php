@@ -24,11 +24,12 @@
                     <div class="form-group">
                         <label for="category">Select Category</label>
                         <select class="form-control" name="category" id="category">
-                            <option>Movie</option>
-                            <option>Music</option>
-                            <option>Sport</option>
-                            <option>Games</option>
-                            <option>Other</option>
+                            <optgroup label="Current">
+                                <option>@{{video.category_id}}</option>
+                            </optgroup>
+                            <optgroup label="Categorys" v-for="category in categories">
+                                <option value=@{{category.id}}>@{{category.name}}</option>
+                            </optgroup>
                         </select>
                     </div>
 
