@@ -6,3 +6,6 @@ Homestead.json
 .idea/
 
 .DS_Store
+
+/public/js/*
+/storage/app/public

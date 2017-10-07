@@ -5,6 +5,7 @@
 @endsection
 
 @section('customs_scripts')
+	<script src="{{ asset('js/upload.js') }}"></script>
     <script src="{{ asset('js/upload-video.js') }}"></script>
 @endsection
 
@@ -22,14 +23,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="category">Select Category</label>
-                        <select class="form-control" name="category" id="category">
-                            <optgroup label="Current">
-                                <option>@{{video.category_id}}</option>
-                            </optgroup>
-                            <optgroup label="Categorys" v-for="category in categories">
-                                <option value=@{{category.id}}>@{{category.name}}</option>
-                            </optgroup>
+                        <label for="category_id">Select Category</label>
+                        <select class="form-control" name="category_id" id="category_id">
+                            <option v-for="category in categories" value=@{{category.id}}>@{{category.name}}</option>
                         </select>
                     </div>
 

@@ -2,8 +2,8 @@ $('.form-add-video button[type=submit]').click(function(e){
     e.preventDefault();
 
     $('#response div').remove();
-    $('#upload-button').text(' Uploading...');
-    $('#upload-button').append('<span id="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
+    $('#upload-button').text(' Uploading...')
+	    .append('<span id="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
 
     var formData = new FormData(document.getElementById("form-add-video"));
 
@@ -26,7 +26,7 @@ $('.form-add-video button[type=submit]').click(function(e){
         error: function(data){
             $('#loading').remove();
             $('#upload-button').text('Upload');
-            if(data.status == 429){
+            if(data.status === 429){
                 $('#response').append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Upps!</strong> Error to upload video. You have exceeded the limit for videos in one hour.</div>');
             }else{
                 $('#response').append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Upps!</strong> Error to upload video. Please fill all camps and review you video type. Only accept 2Mb size and MP4 type</div>');
@@ -58,5 +58,4 @@ $(function () {
         }
 
     }, true);
-
-})
+});

@@ -14866,9 +14866,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-4da8fc20", module.exports)
+    hotAPI.createRecord("_v-3be5306e", module.exports)
   } else {
-    hotAPI.update("_v-4da8fc20", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-3be5306e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"./components/side-bar/index.vue":10,"./components/site-header/index.vue":11,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
@@ -14912,7 +14912,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1 id=\"nameRoute\">{{nameRoute}}</h1>\n<ul class=\"list-inline videoListCard\">\n    <li v-for=\"video in videos\">\n        <a v-link=\"'/videos/' + video.id\" class=\"videoLink\"><div class=\"card videoList\">\n            <video class=\"video-js videoCard\">\n                <source :src=\"video.path+'.webm'\" type=\"video/webm\">\n                <source :src=\"video.path+'.mp4'\" type=\"video/mp4\">\n            </video>\n            <div class=\"card-block\" id=\"card-block{{video.id}}\">\n                <p class=\"label label-info pull-right\">{{video.category}}</p>\n                <h4 class=\"card-text\">{{ video.name.substring(0,20) }}</h4>\n                <button type=\"button\" id=\"dislikes-card-block{{video.id}}\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\">{{video.dislikes}}</i></button>\n                <button type=\"button\" id=\"likes-card-block{{video.id}}\" class=\"btn btn-success\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\">{{video.likes}}</i></button>\n            </div>\n        </div></a>\n    </li>\n</ul>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1 id=\"nameRoute\">{{nameRoute}}</h1>\n<ul class=\"list-inline videoListCard\">\n    <li v-for=\"video in videos\">\n        <a v-link=\"'/videos/' + video.id\" class=\"videoLink\"><div class=\"card videoList\">\n            <video class=\"video-js videoCard\">\n                <source :src=\"video.path+'.webm'\" type=\"video/webm\">\n                <source :src=\"video.path+'.mp4'\" type=\"video/mp4\">\n            </video>\n            <div class=\"card-block\" id=\"card-block{{video.id}}\">\n                <p class=\"label label-info pull-right\">{{video.category_id}}</p>\n                <h4 class=\"card-text\">{{ video.name.substring(0,20) }}</h4>\n                <button type=\"button\" id=\"dislikes-card-block{{video.id}}\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\">{{video.dislikes}}</i></button>\n                <button type=\"button\" id=\"likes-card-block{{video.id}}\" class=\"btn btn-success\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\">{{video.likes}}</i></button>\n            </div>\n        </div></a>\n    </li>\n</ul>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14922,9 +14922,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-5212c6ea", module.exports)
+    hotAPI.createRecord("_v-2d679f83", module.exports)
   } else {
-    hotAPI.update("_v-5212c6ea", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-2d679f83", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
@@ -15039,9 +15039,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-6e8af162", module.exports)
+    hotAPI.createRecord("_v-7dc22656", module.exports)
   } else {
-    hotAPI.update("_v-6e8af162", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-7dc22656", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
@@ -15059,9 +15059,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-3c406788", module.exports)
+    hotAPI.createRecord("_v-388374a1", module.exports)
   } else {
-    hotAPI.update("_v-3c406788", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-388374a1", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
@@ -15125,9 +15125,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-6733eb1e", module.exports)
+    hotAPI.createRecord("_v-66051b65", module.exports)
   } else {
-    hotAPI.update("_v-6733eb1e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-66051b65", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"./search-form.vue":12,"./user-login.vue":13,"./user-register.vue":14,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
@@ -15163,9 +15163,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-485e2995", module.exports)
+    hotAPI.createRecord("_v-05346ec8", module.exports)
   } else {
-    hotAPI.update("_v-485e2995", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-05346ec8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
@@ -15183,9 +15183,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-5579cc6a", module.exports)
+    hotAPI.createRecord("_v-5a500438", module.exports)
   } else {
-    hotAPI.update("_v-5579cc6a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-5a500438", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
@@ -15203,9 +15203,9 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-49e7a731", module.exports)
+    hotAPI.createRecord("_v-48f8bf10", module.exports)
   } else {
-    hotAPI.update("_v-49e7a731", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-48f8bf10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],15:[function(require,module,exports){

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
-Vue.use(VueResource)
+Vue.use(VueResource);
 
 new Vue({
     el: '#listMyVideos',
@@ -26,15 +26,15 @@ new Vue({
         },
 
         updateVideo: function(id){
-            this.$http.put('/api/videos/'+id, {name: $('#name'+id).val(),  category: $('#category'+id).val()}).then(function () {
+            this.$http.put('/api/videos/'+id, {name: $('#name'+id).val(),  category_id: $('#category'+id).val()}).then(function () {
                 this.getMyVideos(this.user.id);
             });
         },
 
         deleteVideo: function(id){
             this.$http.delete('/api/videos/'+id).then(function () {
-                    this.getMyVideos(this.user.id);
-                });
+                this.getMyVideos(this.user.id);
+            });
         }
 
     },

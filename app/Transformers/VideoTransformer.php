@@ -17,7 +17,7 @@ class VideoTransformer extends Transformer
         return [
             'id'        => $video['id'],
             'name'      => $video['name'],
-            'category'  => $video['category'],
+            'category'  => $video->getCategory,
             'path'      => $video['path'],
             'likes'     => $video->likes()->count(),
             'dislikes'  => $video->dislikes()->count(),

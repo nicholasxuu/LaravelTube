@@ -34,9 +34,6 @@ class CreateCategoriesTableAndAlterVideosCategories extends Migration
      */
     public function down()
     {
-        Schema::table('videos', function (Blueprint $table) {
-            $table->dropForeign('videos_category_id_foreign');
-        });
         Schema::drop('categories');
     }
 }

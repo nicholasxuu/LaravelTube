@@ -24,7 +24,7 @@ class VideoUploadRequest extends Request
         return [
             'name'     => 'required|max:255',
             'category_id' => 'required',
-            'video'    => 'required|max:2048|mimes:mp4',
+            'video'    => 'required|max:2048|mimes:mp4,webm',
         ];
     }
 }

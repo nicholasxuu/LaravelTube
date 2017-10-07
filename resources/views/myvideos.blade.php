@@ -23,10 +23,10 @@
                                 <input type="text" class="form-control" name="name" id="name@{{video.id}}" value=@{{video.name}}>
                                 <select class="form-control" name="category" id="category@{{video.id}}">
                                     <optgroup label="Current">
-                                        <option>@{{video.category_id}}</option>
+                                        <option value=@{{video.category.id}}>@{{video.category.name}}</option>
                                     </optgroup>
-                                    <optgroup label="Categorys" v-for="category in categories">
-                                        <option value=@{{category.id}}>@{{category.name}}</option>
+                                    <optgroup label="Categories">
+                                        <option v-for="category in categories" value=@{{category.id}}>@{{category.name}}</option>
                                     </optgroup>
                                 </select>
                                 <button type="button" class="btn btn-success pull-left updateVideo" @click="updateVideo(video.id)"><i class="fa fa-pencil" aria-hidden="true"></i>Update</button>
