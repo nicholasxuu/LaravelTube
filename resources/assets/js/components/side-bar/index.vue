@@ -2,21 +2,35 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li><a href="/upload"><span class="glyphicon glyphicon-home"></span> My Home</a></li>
-            <li><a v-link="{ path: '/category/Movie' }"><span class="glyphicon glyphicon-film"></span> Movie</a></li>
-            <li><a v-link="{ path: '/category/Music' }"><span class="glyphicon glyphicon-headphones"></span> Music</a></li>
-            <li><a v-link="{ path: '/category/Sport' }"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sport</a></li>
-            <li><a v-link="{ path: '/category/Games' }"><i class="fa fa-gamepad" aria-hidden="true"></i> Games</a></li>
-            <li><a v-link="{ path: '/category/Other' }"><i class="fa fa-video-camera" aria-hidden="true"></i> Other</a></li>
-            <li><a v-link="{ path: '/best' }"><i class="fa fa-line-chart" aria-hidden="true"></i> Best Videos</a></li>
+            <li v-for="category in categories">
+                <a v-link="{ path: '/category/' + category.name }"><i class="fa fa-video-camera" aria-hidden="true"></i> {{category.name}}</a>
+            </li>
             <hr />
-            <li><a href="https://twitter.com/deltcod"><i class="fa fa-creative-commons" aria-hidden="true"></i> Created by Adam Alvarado</a></li>
-            <li><a href="https://github.com/AlvaradoAdam15/LaravelTube"><i class="fa fa-code" aria-hidden="true"></i> See code on GitHub</a></li>
         </ul>
     </div>
 
 </template>
 
 <script>
+	export default{
+        data(){
+            return{
+                categories: [],
+            }
+        },
+
+        ready: function(){
+            this.getCategories();
+        },
+
+        methods:{
+            getCategories: function() {
+                this.$http.get('/api/categories').then(function(response) {
+                    this.$set('categories', response.data.data);
+                });
+            },
+        }
+    }
 </script>
 
 <style>
