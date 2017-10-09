@@ -28,9 +28,9 @@ $('.form-update-user').submit(function(e){
 $('#delete-account-button').click(function(e){
     e.preventDefault();
 
-    $('#response div').remove();
+    $('#response div').remove();''
 
-    var user = jQuery.parseJSON($('meta[name=user]').attr("content"));
+    const user = jQuery.parseJSON($('meta[name=user]').attr("content"));
 
     $.ajax({
         headers: {

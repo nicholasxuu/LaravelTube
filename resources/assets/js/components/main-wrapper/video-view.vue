@@ -130,15 +130,11 @@
             },
 
             checkLogin: function(isLoggedIn){
-                if(isLoggedIn == 1){
-                    return true;
-                } else{
-                    return false;
-                }
+                return isLoggedIn === 1;
             },
 
             getUserLogin: function(){
-                var user=jQuery.parseJSON($('meta[name=user]').attr("content"));
+                const user = jQuery.parseJSON($('meta[name=user]').attr("content"));
                 return user;
             }
         }

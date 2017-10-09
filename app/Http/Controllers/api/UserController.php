@@ -91,9 +91,13 @@ class UserController extends ApiGuardController
         $data = [
             'name'     => $request->input('name'),
             'email'    => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'level' => $request->input('level'),
             'avatar'   => $path,
         ];
+
+        if ($request->input('password')) {
+            $data['password'] = bcrypt($request->input('password'));
+        }
 
         $this->user->update($data, $id);
 

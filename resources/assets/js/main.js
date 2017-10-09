@@ -4,12 +4,14 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import videos from './components/main-wrapper/index.vue'
 import videoView from './components/main-wrapper/video-view.vue'
+import userManager from './components/main-wrapper/user-manager.vue'
+import userEditor from './components/main-wrapper/user-editor.vue'
 
 
-Vue.use(VueResource)
-Vue.use(VueRouter)
+Vue.use(VueResource);
+Vue.use(VueRouter);
 
-const router = new VueRouter()
+const router = new VueRouter();
 
 router.map({
     '/': {
@@ -17,28 +19,33 @@ router.map({
             template: '<router-view></router-view>'
         },
         subRoutes: {
-            '/best': {
+            '/': {
                 component: videos
             },
             '/videos/:id': {
-                component: videoView
+                component: videoView,
             },
             '/category/:name': {
-                component: videos
+                component: videos,
             },
             '/search/:name': {
-                component: videos
-            }
+                component: videos,
+            },
+	        '/user/manager/': {
+                component: userManager,
+	        },
+	        '/user/editor/:id': {
+                component: userEditor,
+	        },
         }
     }
-})
+});
 
 
 router.redirect({
-    '*': '/best',
-    '/': '/best'
-})
+    '*': '/',
+});
 
-router.start(App, 'app')
+router.start(App, 'app');
 
 Vue.http.headers.common['X-Authorization'] = $('meta[name=api_token]').attr("content");
