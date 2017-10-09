@@ -28,6 +28,13 @@
 							<td><a @click="deleteCategory(category.id, category.name)">delete</a></td>
 						</tr>
 					</table>
+
+					<div>
+						Add - Name: <br>
+						<input type="text"  v-model="newCategoryName" size="50"><br>
+
+						<input type="button" value="Submit" @click="addCategory()">
+					</div>
 				</div>
 			</div>
 		</div>

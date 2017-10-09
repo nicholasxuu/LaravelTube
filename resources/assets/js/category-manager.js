@@ -9,6 +9,7 @@ new Vue({
 	data: {
 		categories:[],
 		api_token: $('meta[name=api_token]').attr("content"),
+        newCategoryName: '',
 	},
 	methods:{
 		getCategories: function() {
@@ -26,8 +27,8 @@ new Vue({
 			}
 		},
 
-		addCategory: function(name) {
-			this.$http.post('/api/categories', {name: name}).then(function (response) {
+		addCategory: function() {
+			this.$http.post('/api/categories', {name: this.newCategoryName}).then(function (response) {
 				this.getCategories();
 			});
 		}
