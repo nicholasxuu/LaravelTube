@@ -31,3 +31,11 @@ Route::get('/analytics/likes-dislikes', 'AnalyticsController@likesDislikes');
 
 //Profile
 Route::get('profile', 'ProfileController@index');
+
+// User Manager
+Route::get('user/manager', 'UserManagerController@index');
+Route::get('user/editor/{id}', 'UserManagerController@editor');
+
+// Category Manager
+Route::get('category/manager', 'CategoryManagerController@index');
+Route::get('category/editor/{id}', 'CategoryManagerController@editor');

@@ -27,4 +27,9 @@ elixir(function(mix) {
 	mix.browserify('upload.js');
     mix.scripts('upload-video.js');
     mix.styles(['upload-video.css','my-videos.css']);
+
+	mix.browserify('category-manager.js');
+	mix.browserify('category-editor.js');
+	mix.browserify('user-manager.js');
+	mix.browserify('user-editor.js');
 });

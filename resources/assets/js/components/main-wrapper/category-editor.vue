@@ -4,7 +4,7 @@
 		Name: <br>
 		<input type="text"  v-model="name" name="name" value="{{name}}" size="50"><br>
 
-		<input type="button" value="Submit" @click="editCategory(id)">
+		<input type="button" value="Submit" @click="editUser(id)">
 	</form>
 </template>
 
@@ -24,7 +24,7 @@
 				});
 			},
 
-			editCategory: function(id) {
+			editUser: function(id) {
 				this.$http.post('/api/categories/' + id, {name: this.name}).then(function (response) {
 					this.message = "updated";
 					this.getUser(id);
@@ -40,6 +40,14 @@
 </script>
 
 <style>
+	.list {
+
+	}
+
+	.list > li {
+
+	}
+
 	input {
 		color: black;
 	}

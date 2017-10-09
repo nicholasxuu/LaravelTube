@@ -14873,7 +14873,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"./components/side-bar/index.vue":14,"./components/site-header/index.vue":15,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\ninput {\n\tcolor: black;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -14895,7 +14895,7 @@ exports.default = {
 			});
 		},
 
-		editCategory: function editCategory(id) {
+		editUser: function editUser(id) {
 			this.$http.post('/api/categories/' + id, { name: this.name }).then(function (response) {
 				this.message = "updated";
 				this.getUser(id);
@@ -14909,13 +14909,13 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>{{message}}</div>\n<form>\n\tName: <br>\n\t<input type=\"text\" v-model=\"name\" name=\"name\" value=\"{{name}}\" size=\"50\"><br>\n\n\t<input type=\"button\" value=\"Submit\" @click=\"editCategory(id)\">\n</form>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>{{message}}</div>\n<form>\n\tName: <br>\n\t<input type=\"text\" v-model=\"name\" name=\"name\" value=\"{{name}}\" size=\"50\"><br>\n\n\t<input type=\"button\" value=\"Submit\" @click=\"editUser(id)\">\n</form>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\ninput {\n\tcolor: black;\n}\n"] = false
+    __vueify_insert__.cache["\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
