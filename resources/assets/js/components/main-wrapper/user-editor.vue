@@ -40,15 +40,6 @@
 					this.getUser(userId);
 				});
 			},
-
-			deleteUser: function(id, name, email) {
-				const confirmDelete = confirm(`sure to delete ${name} | ${email}?`);
-				if (confirmDelete) {
-					this.$http.delete('/api/users/' + id).then(function (response) {
-						this.getUserList();
-					});
-				}
-			},
 		},
 
 		ready: function(){

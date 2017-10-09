@@ -101,6 +101,8 @@ class UserController extends ApiGuardController
 
         $this->user->update($data, $id);
 
+        $user = $this->user->findOrFail($id);
+
         return $this->response->withItem($user, $this->userTransformer);
     }
 

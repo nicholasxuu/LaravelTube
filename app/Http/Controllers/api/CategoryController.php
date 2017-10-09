@@ -4,7 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Requests\CategoryDeleteRequest;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\CategoryRepository;
+use App\Repositories\VideoRepository;
 use App\Transformers\CategoryTransformer;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 use Illuminate\Http\Request;
@@ -33,14 +35,6 @@ class CategoryController extends ApiGuardController
             'keyAuthentication' => false,
         ],
         'store' => [
-            'limits' => [
-                'key' => [
-                    'increment' => '1 minute',
-                    'limit'     => 10,
-                ],
-            ],
-        ],
-        'destroy' => [
             'limits' => [
                 'key' => [
                     'increment' => '1 minute',
@@ -77,6 +71,15 @@ class CategoryController extends ApiGuardController
     }
 
     /**
+     * @return mixed
+     */
+    public function show($id)
+    {
+        $category = $this->categoryRepository->findOrFail($id);
+        return $this->response->withItem($category, $this->categoryTransformer);
+    }
+
+    /**
      * Create category
      *
      * @param CategoryStoreRequest $request
@@ -90,11 +93,32 @@ class CategoryController extends ApiGuardController
     }
 
     /**
-     * Delete category
-     * @param CategoryDeleteRequest $request
+     * @param CategoryStoreRequest $request
+     * @return mixed
      */
-    public function destroy(CategoryDeleteRequest $request)
+    public function update($id, CategoryUpdateRequest $request)
     {
-        $this->categoryRepository->delete($request->input('id'));
+        $category = $this->categoryRepository->findOrFail($id);
+
+        $data = [
+            'name' => $request->input('name'),
+        ];
+
+        $this->categoryRepository->update($data, $id);
+
+        $category = $this->categoryRepository->findOrFail($id);
+
+        return $this->response->withItem($category, $this->categoryTransformer);
+    }
+
+    /**
+     * Delete category
+     * @param $id
+     * @param VideoRepository $videoRepository
+     */
+    public function destroy($id, VideoRepository $videoRepository)
+    {
+        $this->categoryRepository->delete($id);
+        $videoRepository->unsetCategory($id);
     }
 }

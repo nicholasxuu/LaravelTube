@@ -14871,7 +14871,112 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-3be5306e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./components/side-bar/index.vue":12,"./components/site-header/index.vue":13,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
+},{"./components/side-bar/index.vue":14,"./components/site-header/index.vue":15,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\ninput {\n\tcolor: black;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			message: '',
+			id: null,
+			name: ''
+		};
+	},
+
+	methods: {
+		getCategory: function getCategory(id) {
+			this.$http.get('/api/categories/' + id).then(function (response) {
+				this.name = response.data.data.name;
+			});
+		},
+
+		editCategory: function editCategory(id) {
+			this.$http.post('/api/categories/' + id, { name: this.name }).then(function (response) {
+				this.message = "updated";
+				this.getUser(id);
+			});
+		}
+	},
+
+	ready: function ready() {
+		this.id = this.$route.params.id;
+		this.getCategory(this.id);
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>{{message}}</div>\n<form>\n\tName: <br>\n\t<input type=\"text\" v-model=\"name\" name=\"name\" value=\"{{name}}\" size=\"50\"><br>\n\n\t<input type=\"button\" value=\"Submit\" @click=\"editCategory(id)\">\n</form>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\ninput {\n\tcolor: black;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-29874b8d", module.exports)
+  } else {
+    hotAPI.update("_v-29874b8d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			categories: []
+		};
+	},
+
+	methods: {
+		getCategories: function getCategories() {
+			this.$http.get('/api/categories/').then(function (response) {
+				this.categories = response.data.data;
+			});
+		},
+
+		deleteCategory: function deleteCategory(id, name) {
+			var confirmDelete = confirm('sure to delete ' + name + '?');
+			if (confirmDelete) {
+				this.$http.delete('/api/categories/' + id).then(function (response) {
+					this.getCategories();
+				});
+			}
+		}
+	},
+
+	ready: function ready() {
+		this.getCategories();
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"category in categories\">\n\t\t<td>{{category.id}}</td>\n\t\t<td>{{category.name}}</td>\n\t\t<td><a v-link=\"{ path: '/categories/editor/' + category.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteCategory(category.id, category.name)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-4787eebd", module.exports)
+  } else {
+    hotAPI.update("_v-4787eebd", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n.videoList {\n    margin-bottom: 20px !important;\n}\n\nh1, h2, h3, h4{\n    text-transform: capitalize;\n}\n.videoLink{\n    text-decoration:  none !important;\n}\n\n.videoCard{\n    width:350px;\n    height:300px;\n}\n")
 'use strict';
@@ -14927,7 +15032,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-2d679f83", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n")
 'use strict';
@@ -14960,15 +15065,6 @@ exports.default = {
 				this.message = "updated";
 				this.getUser(userId);
 			});
-		},
-
-		deleteUser: function deleteUser(id, name, email) {
-			var confirmDelete = confirm('sure to delete ' + name + ' | ' + email + '?');
-			if (confirmDelete) {
-				this.$http.delete('/api/users/' + id).then(function (response) {
-					this.getUserList();
-				});
-			}
 		}
 	},
 
@@ -14993,9 +15089,9 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-94cec1c0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.list {\n\n}\n\n.list > li {\n\n}\n\nh1, h2, h3, h4{\n\ttext-transform: capitalize;\n}\n.videoLink{\n\ttext-decoration:  none !important;\n}\n\n.videoCard{\n\twidth:350px;\n\theight:300px;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -15030,13 +15126,13 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th>email</th>\n\t\t<th>level</th>\n\t</tr>\n\t<tr v-for=\"user in users\">\n\t\t<td>{{user.id}}</td>\n\t\t<td>{{user.name}}</td>\n\t\t<td>{{user.email}}</td>\n\t\t<td>{{user.level}}</td>\n\t\t<td><a v-link=\"{ path: '/user/editor/' + user.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteUser(user.id, user.name, user.email)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th>email</th>\n\t\t<th>level</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"user in users\">\n\t\t<td>{{user.id}}</td>\n\t\t<td>{{user.name}}</td>\n\t\t<td>{{user.email}}</td>\n\t\t<td>{{user.level}}</td>\n\t\t<td><a v-link=\"{ path: '/user/editor/' + user.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteUser(user.id, user.name, user.email)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.list {\n\n}\n\n.list > li {\n\n}\n\nh1, h2, h3, h4{\n\ttext-transform: capitalize;\n}\n.videoLink{\n\ttext-decoration:  none !important;\n}\n\n.videoCard{\n\twidth:350px;\n\theight:300px;\n}\n"] = false
+    __vueify_insert__.cache["\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -15045,7 +15141,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-3da10d8a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n   .alert-danger {\n       background-color: #dd4b39;\n       border-color: #dd4b39;\n       color: white;\n   }\n\n.video-js, .vjs-control-bar{ color: #46FF62; }\n\n   .video-js-responsive-container.vjs-hd {\n       padding-top: 56.25%;\n   }\n   .video-js-responsive-container.vjs-sd {\n       padding-top: 75%;\n   }\n   .video-js-responsive-container {\n       width: 100%;\n       position: relative;\n   }\n   .video-js-responsive-container .video-js {\n       height: 100% !important;\n       width: 100% !important;\n       position: absolute;\n       top: 0;\n       left: 0;\n   }\n\n    .commentBox {\n        padding:10px;\n    }\n    .commentBox .form-group:first-child, .actionBox .form-group:first-child {\n        width:80%;\n    }\n    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {\n        width:18%;\n    }\n    .commentBox .form-group * {\n        width:100%;\n    }\n\n    .commentList {\n        padding:0;\n        list-style:none;\n        max-height:200px;\n        overflow:auto;\n    }\n    .commentList li {\n        margin:0;\n        margin-top:10px;\n    }\n    .commentList li > div {\n        display:table-cell;\n    }\n    .commenterImage {\n        width:30px;\n        margin-right:5px;\n        height:100%;\n        float:left;\n    }\n    .commenterImage img {\n        width:100%;\n        border-radius:50%;\n    }\n    .commentText p {\n        margin:0;\n    }\n    .sub-text {\n        color:#aaa;\n        font-family:verdana;\n        font-size:11px;\n    }\n")
 'use strict';
@@ -15158,7 +15254,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7dc22656", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n#wrapper {\n    padding-left: 250px;\n    padding-top: 50px;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper {\n    margin-left: -250px;\n    left: 250px;\n    width: 250px;\n    background: #212121;\n    position: fixed;\n    height: 100%;\n    overflow-y: auto;\n    z-index: 1000;\n    transition: all 0.4s ease 0s;\n}\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 250px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n\n.sidebar-nav li {\n    line-height: 40px;\n    text-indent: 20px;\n}\n\n.sidebar-nav li a {\n    color: #999999;\n    display: block;\n    text-decoration: none;\n}\n\n.sidebar-nav li a:hover {\n    color: #fff;\n    background: rgba(255,255,255,0.2);\n    text-decoration: none;\n}\n\n.sidebar-nav li a:active,\n.sidebar-nav li a:focus {\n    text-decoration: none;\n}\n\n.sidebar-nav > .sidebar-brand a:hover {\n    color: #fff;\n    background: none;\n}\n\n@media (max-width:767px) {\n\n    #wrapper {\n        padding-left: 0;\n    }\n\n    #sidebar-wrapper {\n        left: 0;\n    }\n\n    #wrapper.active {\n        position: relative;\n        left: 250px;\n    }\n\n    #wrapper.active #sidebar-wrapper {\n        left: 250px;\n        width: 250px;\n        transition: all 0.4s ease 0s;\n    }\n\n}\n")
 'use strict';
@@ -15202,7 +15298,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-388374a1", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],15:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n#navigation {\n    background: #282828;\n}\n")
 'use strict';
@@ -15268,7 +15364,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-66051b65", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./search-form.vue":14,"./user-login.vue":15,"./user-register.vue":16,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
+},{"./search-form.vue":16,"./user-login.vue":17,"./user-register.vue":18,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],16:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n#searchForm {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 256px;\n            flex: 0 0 256px;\n    background: transparent;\n    margin-top: 10px;\n}\n\n#searchForm>input{\n    width: 250px;\n    height: 30px;\n    margin-top: 0;\n    border-radius: 12px;\n    border: 2px solid #181818;\n    font-family: 'Raleway', sans-serif;\n    color: #303030;\n    font-size: 13px;\n}\n\n#searchForm>input:focus {\n    outline: none;\n}\n")
 'use strict';
@@ -15306,7 +15402,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-05346ec8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],15:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],17:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.user-login{\n    font-family: 'Raleway', sans-serif;\n    font-size: 13px;\n}\n")
 "use strict";
@@ -15326,7 +15422,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-5a500438", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],16:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],18:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.user-register{\n    font-family: 'Raleway', sans-serif;\n    font-size: 13px;;\n}\n")
 "use strict";
@@ -15346,7 +15442,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-48f8bf10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],17:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],19:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -15381,6 +15477,14 @@ var _userEditor = require('./components/main-wrapper/user-editor.vue');
 
 var _userEditor2 = _interopRequireDefault(_userEditor);
 
+var _categoryManager = require('./components/main-wrapper/category-manager.vue');
+
+var _categoryManager2 = _interopRequireDefault(_categoryManager);
+
+var _categoryEditor = require('./components/main-wrapper/category-editor.vue');
+
+var _categoryEditor2 = _interopRequireDefault(_categoryEditor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
@@ -15411,6 +15515,12 @@ router.map({
             },
             '/user/editor/:id': {
                 component: _userEditor2.default
+            },
+            '/categories/manager/': {
+                component: _categoryManager2.default
+            },
+            '/categories/editor/:id': {
+                component: _categoryEditor2.default
             }
         }
     }
@@ -15424,6 +15534,6 @@ router.start(_app2.default, 'app');
 
 _vue2.default.http.headers.common['X-Authorization'] = $('meta[name=api_token]').attr("content");
 
-},{"./app.vue":7,"./components/main-wrapper/index.vue":8,"./components/main-wrapper/user-editor.vue":9,"./components/main-wrapper/user-manager.vue":10,"./components/main-wrapper/video-view.vue":11,"vue":5,"vue-resource":3,"vue-router":4}]},{},[17]);
+},{"./app.vue":7,"./components/main-wrapper/category-editor.vue":8,"./components/main-wrapper/category-manager.vue":9,"./components/main-wrapper/index.vue":10,"./components/main-wrapper/user-editor.vue":11,"./components/main-wrapper/user-manager.vue":12,"./components/main-wrapper/video-view.vue":13,"vue":5,"vue-resource":3,"vue-router":4}]},{},[19]);
 
 //# sourceMappingURL=main.js.map

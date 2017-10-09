@@ -38,4 +38,11 @@ class VideoRepository extends Repository
 
         return $best_vidos;
     }
+
+    /**
+     * @param $categoryId
+     */
+    public function unsetCategory($categoryId) {
+        Video::where('category_id', $categoryId)->update(['category_id' => 0]);
+    }
 }

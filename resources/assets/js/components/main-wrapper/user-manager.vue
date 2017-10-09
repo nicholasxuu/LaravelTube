@@ -5,6 +5,8 @@
 			<th>name</th>
 			<th>email</th>
 			<th>level</th>
+			<th></th>
+			<th></th>
 		</tr>
 		<tr v-for="user in users">
 			<td>{{user.id}}</td>
@@ -48,23 +50,4 @@
 </script>
 
 <style>
-	.list {
-
-	}
-
-	.list > li {
-
-	}
-
-	h1, h2, h3, h4{
-		text-transform: capitalize;
-	}
-	.videoLink{
-		text-decoration:  none !important;
-	}
-
-	.videoCard{
-		width:350px;
-		height:300px;
-	}
 </style>

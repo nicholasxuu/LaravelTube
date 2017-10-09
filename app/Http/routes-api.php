@@ -33,6 +33,8 @@ Route::group(['prefix' => 'api'], function () {
 
     // Categories
     Route::get('categories', 'api\CategoryController@getAll');
+    Route::get('categories/{id}', 'api\CategoryController@show');
     Route::post('categories', 'api\CategoryController@store');
+    Route::post('categories/{id}', 'api\CategoryController@update');
     Route::delete('categories/{id}', 'api\CategoryController@destroy');
 });
