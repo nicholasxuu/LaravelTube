@@ -22,8 +22,8 @@
             <li><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Main</span></a></li>
             <li><a href="{{ url('upload') }}"><i class="fa fa-upload" aria-hidden="true"></i> <span>Upload</span></a></li>
             <li><a href="{{ url('myvideos') }}"><i class='fa fa-video-camera'></i> <span>My Videos</span></a></li>
-            <li><a href="{{ url('/user/manager') }}"><i class='fa '></i> <span>User Manager</span></a></li>
-            <li><a href="{{ url('/category/manager') }}"><i class='fa '></i> <span>Category Manager</span></a></li>
+            <li><a href="{{ url('/user/manager') }}"><i class='fa fa-users'></i> <span>User Manager</span></a></li>
+            <li><a href="{{ url('/category/manager') }}"><i class='fa fa-tags'></i> <span>Category Manager</span></a></li>
 
             <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart'></i> <span>Analytics</span> <i class="fa fa-angle-left pull-right"></i></a>

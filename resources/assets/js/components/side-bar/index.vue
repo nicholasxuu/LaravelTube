@@ -1,7 +1,6 @@
 <template>
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li><a href="/upload"><span class="glyphicon glyphicon-home"></span> My Home</a></li>
             <li v-for="category in categories">
                 <a v-link="{ path: '/category/' + category.name }"><i class="fa fa-video-camera" aria-hidden="true"></i> {{category.name}}</a>
             </li>

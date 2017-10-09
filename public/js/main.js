@@ -15283,7 +15283,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li><a href=\"/upload\"><span class=\"glyphicon glyphicon-home\"></span> My Home</a></li>\n        <li v-for=\"category in categories\">\n            <a v-link=\"{ path: '/category/' + category.name }\"><i class=\"fa fa-video-camera\" aria-hidden=\"true\"></i> {{category.name}}</a>\n        </li>\n        <hr>\n    </ul>\n</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li v-for=\"category in categories\">\n            <a v-link=\"{ path: '/category/' + category.name }\"><i class=\"fa fa-video-camera\" aria-hidden=\"true\"></i> {{category.name}}</a>\n        </li>\n        <hr>\n    </ul>\n</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
