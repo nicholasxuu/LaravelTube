@@ -2,10 +2,12 @@
 
 namespace App\Transformers;
 
+use League\Fractal\TransformerAbstract;
+
 /**
  * Class VideoTransformer.
  */
-class VideoTransformer extends Transformer
+class VideoTransformer extends TransformerAbstract
 {
     /**
      * @param $video

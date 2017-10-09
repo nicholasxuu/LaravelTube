@@ -2,10 +2,12 @@
 
 namespace App\Transformers;
 
+use League\Fractal\TransformerAbstract;
+
 /**
  * Class UserTransformer.
  */
-class UserTransformer extends Transformer
+class UserTransformer extends TransformerAbstract
 {
     /**
      * @param $user

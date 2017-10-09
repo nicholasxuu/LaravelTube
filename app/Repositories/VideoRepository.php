@@ -40,9 +40,10 @@ class VideoRepository extends Repository
     }
 
     /**
+     * set category id to default 'Others'
      * @param $categoryId
      */
     public function unsetCategory($categoryId) {
-        Video::where('category_id', $categoryId)->update(['category_id' => 0]);
+        Video::where('category_id', $categoryId)->update(['category_id' => 1]);
     }
 }

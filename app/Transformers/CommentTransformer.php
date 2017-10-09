@@ -2,10 +2,12 @@
 
 namespace App\Transformers;
 
+use League\Fractal\TransformerAbstract;
+
 /**
  * Class CommentTransformer.
  */
-class CommentTransformer extends Transformer
+class CommentTransformer extends TransformerAbstract
 {
     /**
      * @param $comment

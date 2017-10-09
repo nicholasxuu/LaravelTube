@@ -20,6 +20,8 @@ class CreateCategoriesTableAndAlterVideosCategories extends Migration
             $table->unique('name');
         });
 
+        \DB::table('categories')->insert(['id' => 1, 'name' => 'Others']);
+
         Schema::table('videos', function($table) {
             $table->dropColumn('category');
             $table->integer('category_id')->references('id')->on('categories');
