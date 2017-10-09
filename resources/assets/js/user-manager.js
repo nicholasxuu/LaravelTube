@@ -7,35 +7,29 @@ new Vue({
 	el: '#user-manager',
 
 	data: {
-		categories:[],
+		users:[],
 		api_token: $('meta[name=api_token]').attr("content"),
 	},
-	methods:{
-		getCategories: function() {
-			this.$http.get('/api/categories/').then(function (response) {
-				this.categories = response.data.data;
-			});
-		},
+    methods:{
+        getUserList: function() {
+            this.$http.get('/api/users/').then(function (response) {
+                this.users = response.data.data;
+            });
+        },
 
-		deleteCategory: function(id, name) {
-			const confirmDelete = confirm(`sure to delete ${name}?`);
-			if (confirmDelete) {
-				this.$http.delete('/api/categories/' + id).then(function (response) {
-					this.getCategories();
-				});
-			}
-		},
+        deleteUser: function(id, name, email) {
+            const confirmDelete = confirm(`sure to delete ${name} | ${email}?`);
+            if (confirmDelete) {
+                this.$http.delete('/api/users/' + id).then(function (response) {
+                    this.getUserList();
+                });
+            }
+        },
+    },
 
-		addCategory: function(name) {
-			this.$http.post('/api/categories', {name: name}).then(function (response) {
-				this.getCategories();
-			});
-		}
-	},
-
-	ready: function(){
-		this.getCategories();
-	},
+    ready: function(){
+        this.getUserList();
+    },
 });
 
 

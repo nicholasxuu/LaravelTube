@@ -24,8 +24,8 @@ class UserManagerController extends Controller
         return view('user-manager');
     }
 
-    public function editor()
+    public function editor($id)
     {
-        return view('user-editor');
+        return view('user-editor', ['id' => $id]);
     }
 }

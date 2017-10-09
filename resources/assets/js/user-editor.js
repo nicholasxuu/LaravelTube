@@ -4,31 +4,36 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource);
 
 new Vue({
-	el: '#category-editor',
+	el: '#user-editor',
 
-	data: {
+    data: {
 		message: '',
-		id: $('meta[name=category-id]').attr("content"),
+        api_token: $('meta[name=api_token]').attr("content"),
+		userId: $('meta[name=user-id]').attr("content"),
 		name: '',
+		email: '',
+		level: '',
 	},
-	methods:{
-		getCategory: function(id) {
-			this.$http.get('/api/categories/' + id).then(function (response) {
-				this.name = response.data.data.name;
-			});
-		},
+    methods:{
+        getUser: function(userId) {
+            this.$http.get('/api/users/' + userId).then(function (response) {
+                this.name = response.data.data.name;
+                this.email = response.data.data.email;
+                this.level = response.data.data.level;
+            });
+        },
 
-		editCategory: function(id) {
-			this.$http.post('/api/categories/' + id, {name: this.name}).then(function (response) {
-				this.message = "updated";
-				this.getUser(id);
-			});
-		},
-	},
+        editUser: function(userId) {
+            this.$http.post('/api/users/' + userId, {name: this.name, email: this.email, level: this.level, password: this.password}).then(function (response) {
+                this.message = "updated";
+                this.getUser(userId);
+            });
+        },
+    },
 
-	ready: function(){
-		this.getCategory(this.id);
-	},
+    ready: function(){
+        this.getUser(this.userId);
+    },
 });
 
 
