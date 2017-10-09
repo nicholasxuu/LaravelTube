@@ -13,7 +13,7 @@
 			<td>{{user.name}}</td>
 			<td>{{user.email}}</td>
 			<td>{{user.level}}</td>
-			<td><a v-link="{ path: '/user/editor/' + user.id}">edit</a></td>
+			<td><a v-link="{ path: '/users/editor/' + user.id}">edit</a></td>
 			<td><a @click="deleteUser(user.id, user.name, user.email)">delete</a></td>
 		</tr>
 	</table>

@@ -15126,7 +15126,7 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th>email</th>\n\t\t<th>level</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"user in users\">\n\t\t<td>{{user.id}}</td>\n\t\t<td>{{user.name}}</td>\n\t\t<td>{{user.email}}</td>\n\t\t<td>{{user.level}}</td>\n\t\t<td><a v-link=\"{ path: '/user/editor/' + user.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteUser(user.id, user.name, user.email)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th>email</th>\n\t\t<th>level</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"user in users\">\n\t\t<td>{{user.id}}</td>\n\t\t<td>{{user.name}}</td>\n\t\t<td>{{user.email}}</td>\n\t\t<td>{{user.level}}</td>\n\t\t<td><a v-link=\"{ path: '/users/editor/' + user.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteUser(user.id, user.name, user.email)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -15510,10 +15510,10 @@ router.map({
             '/search/:name': {
                 component: _index2.default
             },
-            '/user/manager/': {
+            '/users/manager/': {
                 component: _userManager2.default
             },
-            '/user/editor/:id': {
+            '/users/editor/:id': {
                 component: _userEditor2.default
             },
             '/categories/manager/': {

@@ -33,10 +33,10 @@ router.map({
             '/search/:name': {
                 component: videos,
             },
-	        '/user/manager/': {
+	        '/users/manager/': {
                 component: userManager,
 	        },
-	        '/user/editor/:id': {
+	        '/users/editor/:id': {
                 component: userEditor,
 	        },
 	        '/categories/manager/': {
