@@ -24,10 +24,10 @@
                     <img id="avatarComment{{comment.user_id}}{{comment.id}}" src="" />
                 </div>
                 <div class="commentText">
-                    <p class="">{{comment.comment}}</p><span class="date sub-text" id="nameUserComment{{comment.user_id}}{{comment.id}}"></span>
+                    <p class=""><pre>{{comment.comment}}</pre></p><span class="date sub-text" id="nameUserComment{{comment.user_id}}{{comment.id}}"></span>
                     <div class="form-inline form-add-comment" v-if="isLoggedIn == 1">
-                        <div v-if="comment.user_id ==  getUserLogin().id">
-                            <input class="form-control" id="your-update-comment{{comment.id}}" type="text" placeholder="{{comment.comment}}" />
+                        <div v-if="comment.user_id == getUserLogin().id || getUserLogin().level >= 100">
+                            <textarea class="form-control" id="your-update-comment{{comment.id}}" type="text" placeholder="">{{comment.comment}}</textarea>
                             <button @click="updateComment(comment.id)" class="btn btn-success btn-comment">Update</button>
                             <button @click="deleteComment(comment.id)" class="btn btn-danger btn-comment">Delete</button>
                         </div>
@@ -37,7 +37,7 @@
         </ul>
         <div class="form-inline form-add-comment">
             <div class="form-group">
-                <input class="form-control" type="text" id="your-comments" name="your-comments" placeholder="Your comments" />
+                <textarea class="form-control" type="text" id="your-comments" name="your-comments" placeholder="Your comments"></textarea>
             </div>
             <div class="form-group">
                 <button @click="commentVideo(isLoggedIn)" class="btn btn-success btn-comment">Add</button>
@@ -74,7 +74,6 @@
                 });
             },
             likeDislike: function(isLoggedIn, type){
-
                 var checkLogin= this.checkLogin(isLoggedIn);
 
                 $('#errorLogin div').remove();
@@ -130,7 +129,7 @@
             },
 
             checkLogin: function(isLoggedIn){
-                return isLoggedIn === 1;
+                return isLoggedIn == 1;
             },
 
             getUserLogin: function(){
