@@ -94,6 +94,12 @@ class CommentController extends ApiGuardController
      */
     public function update(CommentUpdateRequest $request)
     {
+        $commentId = $request->input('id');
+        $user = $request->user();
+        if (!$this->checkModPermission($commentId, $user)) {
+            return response('Unauthorized.', 401);
+        }
+
         $comment = $this->comment->findOrFail($request->input('id'));
 
         $this->comment->update($request->all(), $request->input('id'));
@@ -105,9 +111,30 @@ class CommentController extends ApiGuardController
      * Delete comment.
      *
      * @param CommentDeleteRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function delete(CommentDeleteRequest $request)
     {
+        $commentId = $request->input('id');
+        $user = $request->user();
+        if (!$this->checkModPermission($commentId, $user)) {
+            return response('Unauthorized.', 401);
+        }
+
         $this->comment->delete($request->input('id'));
+    }
+
+    /**
+     * @param $user
+     * @param $commentId
+     * @return bool
+     */
+    protected function checkModPermission($user, $commentId)
+    {
+        $comment = $this->comment->findOrFail($commentId);
+        if ($user->level <= 100 && $user->id !== $comment->user_id) {
+            return false;
+        }
+        return true;
     }
 }

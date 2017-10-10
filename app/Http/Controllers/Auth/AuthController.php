@@ -52,6 +52,7 @@ class AuthController extends Controller
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'level' => 'min:0|max:255'
         ]);
     }
 
@@ -68,6 +69,7 @@ class AuthController extends Controller
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
+            'level' => 0,
         ]);
 
         $this->createUserApiKey($user);

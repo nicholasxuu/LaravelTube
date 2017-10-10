@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-success pull-left"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
-                        <button type="button" id="delete-account-button" class="btn btn-danger pull-right"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                        {{--<button type="button" id="delete-account-button" class="btn btn-danger pull-right"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>--}}
                     </div>
                 </form>
             </div>

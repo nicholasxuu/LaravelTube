@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\api;
 
+
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository as User;
 use App\Transformers\UserTransformer;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
+use Chrisbjr\ApiGuard\Models\ApiKey;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -23,6 +26,9 @@ class UserController extends ApiGuardController
      */
     protected $apiMethods = [
         'getAllUsers' => [
+            'level' => 100,
+        ],
+        'delete' => [
             'level' => 100,
         ],
         'show' => [
@@ -80,6 +86,10 @@ class UserController extends ApiGuardController
      */
     public function update(UserUpdateRequest $request, $id)
     {
+        if (!$this->checkModPermission($request->user(), $id)) {
+            return response('Unauthorized.', 401);
+        }
+
         $user = $this->user->findOrFail($id);
 
         if ($request->avatar != '') {
@@ -88,15 +98,27 @@ class UserController extends ApiGuardController
             $path = $user->avatar;
         }
 
+        $newLevel = $request->input('level');
+        if ($user->level < $newLevel) {
+            // if upgrade level
+            if ($request->user()->level < $newLevel) {
+                $newLevel = $request->user()->level;
+            }
+        }
+
         $data = [
             'name'     => $request->input('name'),
             'email'    => $request->input('email'),
-            'level' => $request->input('level'),
+            'level' => $newLevel,
             'avatar'   => $path,
         ];
 
         if ($request->input('password')) {
             $data['password'] = bcrypt($request->input('password'));
+        }
+
+        if ($newLevel !== null) {
+            $apiKey = ApiKey::where('user_id', $id)->update(['level' => $newLevel]);
         }
 
         $this->user->update($data, $id);
@@ -134,5 +156,18 @@ class UserController extends ApiGuardController
         );
 
         return $path;
+    }
+
+    /**
+     * @param $user
+     * @param $userId
+     * @return bool
+     */
+    protected function checkModPermission($user, $userId)
+    {
+        if ($user->level <= 100 && $user->id !== $userId) {
+            return false;
+        }
+        return true;
     }
 }
