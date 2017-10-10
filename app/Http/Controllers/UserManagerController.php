@@ -16,14 +16,12 @@ class UserManagerController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return Response
      */
     public function index()
     {
         return view('user-manager');
     }
-
+    
     public function editor($id)
     {
         return view('user-editor', ['id' => $id]);
