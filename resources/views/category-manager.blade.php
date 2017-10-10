@@ -27,7 +27,7 @@
 							<tr v-for="category in categories">
 								<td>@{{category.id}}</td>
 								<td>@{{category.name}}</td>
-								<td><a href="/category/editor/@{{category.id}}">edit</a></td>
+								<td><a href="{{url('/category/editor/')}}/@{{category.id}}">edit</a></td>
 								<td><a @click="deleteCategory(category.id, category.name)">delete</a></td>
 							</tr>
 						</tbody>

@@ -15,10 +15,12 @@
                 <ul class="list-inline videoListCard">
                     <li v-for="video in videos">
                         <div class="card videoList">
-                            <video class="video-js videoCard">
-                                <source :src=video.path+'.webm' type='video/webm'>
-                                <source :src=video.path+'.mp4' type='video/mp4'>
-                            </video>
+                            <a class="videoLink" href="{{url('/#!/videos/')}}@{{video.id}}">
+                                <video class="video-js videoCard">
+                                    <source :src=video.path+'.webm' type='video/webm'>
+                                    <source :src=video.path+'.mp4' type='video/mp4'>
+                                </video>
+                            </a>
                             <div class="card-block">
                                 <input type="text" class="form-control" name="name" id="name@{{video.id}}" value=@{{video.name}}>
                                 <select class="form-control" name="category" id="category@{{video.id}}">

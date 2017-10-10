@@ -31,7 +31,7 @@
 								<td>@{{user.name}}</td>
 								<td>@{{user.email}}</td>
 								<td>@{{user.level}}</td>
-								<td><a href="/user/editor/@{{user.id}}">edit</a></td>
+								<td><a href="{{url('/user/editor/')}}/@{{user.id}}">edit</a></td>
 								<td><a @click="deleteUser(user.id, user.name, user.email)">delete</a></td>
 							</tr>
 						</tbody>
