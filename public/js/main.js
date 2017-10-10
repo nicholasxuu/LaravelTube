@@ -14835,7 +14835,7 @@ exports.insert = function (css) {
 
 },{}],7:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nbody{\n    background-color: #303030;\n}\n*{\n    color: white;\n    font-family: 'Raleway', sans-serif;\n}\n\n.nav>li:hover, .sidebar-nav>li:hover{\n    background-color: #00BE2D;\n}\n\n.v-link-active{\n    border-left: 3px solid #46FF62;\n    color: white !important;\n}\n\n.videoList:hover{\n    border: 1px solid #46FF62;\n}\n.videoList{\n    background-color: #101010;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\nbody{\n    background-color: #EEEEEE;\n}\n*{\n    color: black;\n    font-family: 'Raleway', sans-serif;\n}\n\n.nav>li:hover, .sidebar-nav>li:hover{\n    background-color: #00BE2D;\n}\n\n.v-link-active{\n    border-left: 3px solid #46FF62;\n    color: white !important;\n}\n\n.videoList:hover{\n    /*border: 1px solid #46FF62;*/\n}\n.videoList{\n    background-color: #DDDDDD;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -14862,16 +14862,121 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\nbody{\n    background-color: #303030;\n}\n*{\n    color: white;\n    font-family: 'Raleway', sans-serif;\n}\n\n.nav>li:hover, .sidebar-nav>li:hover{\n    background-color: #00BE2D;\n}\n\n.v-link-active{\n    border-left: 3px solid #46FF62;\n    color: white !important;\n}\n\n.videoList:hover{\n    border: 1px solid #46FF62;\n}\n.videoList{\n    background-color: #101010;\n}\n"] = false
+    __vueify_insert__.cache["\nbody{\n    background-color: #EEEEEE;\n}\n*{\n    color: black;\n    font-family: 'Raleway', sans-serif;\n}\n\n.nav>li:hover, .sidebar-nav>li:hover{\n    background-color: #00BE2D;\n}\n\n.v-link-active{\n    border-left: 3px solid #46FF62;\n    color: white !important;\n}\n\n.videoList:hover{\n    /*border: 1px solid #46FF62;*/\n}\n.videoList{\n    background-color: #DDDDDD;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-3be5306e", module.exports)
+    hotAPI.createRecord("_v-505d19f7", module.exports)
   } else {
-    hotAPI.update("_v-3be5306e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-505d19f7", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./components/side-bar/index.vue":10,"./components/site-header/index.vue":11,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
+},{"./components/side-bar/index.vue":14,"./components/site-header/index.vue":15,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],8:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			message: '',
+			id: null,
+			name: ''
+		};
+	},
+
+	methods: {
+		getCategory: function getCategory(id) {
+			this.$http.get('/api/categories/' + id).then(function (response) {
+				this.name = response.data.data.name;
+			});
+		},
+
+		editUser: function editUser(id) {
+			this.$http.post('/api/categories/' + id, { name: this.name }).then(function (response) {
+				this.message = "updated";
+				this.getUser(id);
+			});
+		}
+	},
+
+	ready: function ready() {
+		this.id = this.$route.params.id;
+		this.getCategory(this.id);
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>{{message}}</div>\n<form>\n\tName: <br>\n\t<input type=\"text\" v-model=\"name\" name=\"name\" value=\"{{name}}\" size=\"50\"><br>\n\n\t<input type=\"button\" value=\"Submit\" @click=\"editUser(id)\">\n</form>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-158dfebb", module.exports)
+  } else {
+    hotAPI.update("_v-158dfebb", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			categories: []
+		};
+	},
+
+	methods: {
+		getCategories: function getCategories() {
+			this.$http.get('/api/categories/').then(function (response) {
+				this.categories = response.data.data;
+			});
+		},
+
+		deleteCategory: function deleteCategory(id, name) {
+			var confirmDelete = confirm('sure to delete ' + name + '?');
+			if (confirmDelete) {
+				this.$http.delete('/api/categories/' + id).then(function (response) {
+					this.getCategories();
+				});
+			}
+		}
+	},
+
+	ready: function ready() {
+		this.getCategories();
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"category in categories\">\n\t\t<td>{{category.id}}</td>\n\t\t<td>{{category.name}}</td>\n\t\t<td><a v-link=\"{ path: '/categories/editor/' + category.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteCategory(category.id, category.name)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-4750bd62", module.exports)
+  } else {
+    hotAPI.update("_v-4750bd62", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n.videoList {\n    margin-bottom: 20px !important;\n}\n\nh1, h2, h3, h4{\n    text-transform: capitalize;\n}\n.videoLink{\n    text-decoration:  none !important;\n}\n\n.videoCard{\n    width:350px;\n    height:300px;\n}\n")
 'use strict';
@@ -14922,14 +15027,123 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-2d679f83", module.exports)
+    hotAPI.createRecord("_v-1da4579e", module.exports)
   } else {
-    hotAPI.update("_v-2d679f83", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-1da4579e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n   .alert-danger {\n       background-color: #dd4b39;\n       border-color: #dd4b39;\n       color: white;\n   }\n\n.video-js, .vjs-control-bar{ color: #46FF62; }\n\n   .video-js-responsive-container.vjs-hd {\n       padding-top: 56.25%;\n   }\n   .video-js-responsive-container.vjs-sd {\n       padding-top: 75%;\n   }\n   .video-js-responsive-container {\n       width: 100%;\n       position: relative;\n   }\n   .video-js-responsive-container .video-js {\n       height: 100% !important;\n       width: 100% !important;\n       position: absolute;\n       top: 0;\n       left: 0;\n   }\n\n    .commentBox {\n        padding:10px;\n    }\n    .commentBox .form-group:first-child, .actionBox .form-group:first-child {\n        width:80%;\n    }\n    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {\n        width:18%;\n    }\n    .commentBox .form-group * {\n        width:100%;\n    }\n\n    .commentList {\n        padding:0;\n        list-style:none;\n        max-height:200px;\n        overflow:auto;\n    }\n    .commentList li {\n        margin:0;\n        margin-top:10px;\n    }\n    .commentList li > div {\n        display:table-cell;\n    }\n    .commenterImage {\n        width:30px;\n        margin-right:5px;\n        height:100%;\n        float:left;\n    }\n    .commenterImage img {\n        width:100%;\n        border-radius:50%;\n    }\n    .commentText p {\n        margin:0;\n    }\n    .sub-text {\n        color:#aaa;\n        font-family:verdana;\n        font-size:11px;\n    }\n")
+var __vueify_style__ = __vueify_insert__.insert("\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			message: '',
+			userId: null,
+			name: '',
+			email: '',
+			level: ''
+		};
+	},
+
+	methods: {
+		getUser: function getUser(userId) {
+			this.$http.get('/api/users/' + userId).then(function (response) {
+				this.name = response.data.data.name;
+				this.email = response.data.data.email;
+				this.level = response.data.data.level;
+			});
+		},
+
+		editUser: function editUser(userId) {
+			this.$http.post('/api/users/' + userId, { name: this.name, email: this.email, level: this.level, password: this.password }).then(function (response) {
+				this.message = "updated";
+				this.getUser(userId);
+			});
+		}
+	},
+
+	ready: function ready() {
+		this.userId = this.$route.params.id;
+		this.getUser(this.userId);
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>{{message}}</div>\n<form>\n\tName: <br>\n\t<input type=\"text\" v-model=\"name\" name=\"name\" value=\"{{name}}\" size=\"50\"><br>\n\temail: <br>\n\t<input type=\"text\" v-model=\"email\" name=\"email\" value=\"{{email}}\" size=\"50\"><br>\n\tlevel: <br>\n\t<input type=\"text\" v-model=\"level\" name=\"level\" value=\"{{level}}\" size=\"50\"><br>\n\tpassword: <br>\n\t<input type=\"text\" v-model=\"password\" name=\"password\" value=\"\" size=\"50\"><br>\n\n\t<input type=\"button\" value=\"Submit\" @click=\"editUser(userId)\">\n</form>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n.list {\n\n}\n\n.list > li {\n\n}\n\ninput {\n\tcolor: black;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-7537cd64", module.exports)
+  } else {
+    hotAPI.update("_v-7537cd64", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	data: function data() {
+		return {
+			users: []
+		};
+	},
+
+	methods: {
+		getUserList: function getUserList() {
+			this.$http.get('/api/users/').then(function (response) {
+				this.users = response.data.data;
+			});
+		},
+
+		deleteUser: function deleteUser(id, name, email) {
+			var confirmDelete = confirm('sure to delete ' + name + ' | ' + email + '?');
+			if (confirmDelete) {
+				this.$http.delete('/api/users/' + id).then(function (response) {
+					this.getUserList();
+				});
+			}
+		}
+	},
+
+	ready: function ready() {
+		this.getUserList();
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<table style=\"width:100%\">\n\t<tbody><tr>\n\t\t<th>id</th>\n\t\t<th>name</th>\n\t\t<th>email</th>\n\t\t<th>level</th>\n\t\t<th></th>\n\t\t<th></th>\n\t</tr>\n\t<tr v-for=\"user in users\">\n\t\t<td>{{user.id}}</td>\n\t\t<td>{{user.name}}</td>\n\t\t<td>{{user.email}}</td>\n\t\t<td>{{user.level}}</td>\n\t\t<td><a v-link=\"{ path: '/users/editor/' + user.id}\">edit</a></td>\n\t\t<td><a @click=\"deleteUser(user.id, user.name, user.email)\">delete</a></td>\n\t</tr>\n</tbody></table>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-2744d91c", module.exports)
+  } else {
+    hotAPI.update("_v-2744d91c", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n.alert-danger {\n    background-color: #dd4b39;\n    border-color: #dd4b39;\n    color: white;\n}\n\n.commentText {\n    width: 100%;\n}\n\n.form-add-comment.edit-comment textarea {\n    width: 100% !important;\n}\n\n.form-add-comment.new-comment textarea {\n    width: 100% !important;\n}\n\n.video-js, .vjs-control-bar{ color: #46FF62; }\n\n.video-js-responsive-container.vjs-hd {\n    padding-top: 56.25%;\n}\n.video-js-responsive-container.vjs-sd {\n    padding-top: 75%;\n}\n.video-js-responsive-container {\n    width: 100%;\n    position: relative;\n}\n.video-js-responsive-container .video-js {\n    height: 100% !important;\n    width: 100% !important;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n .commentBox {\n     padding:10px;\n }\n .commentBox .form-group:first-child, .actionBox .form-group:first-child {\n     width:80%;\n }\n .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {\n     width:18%;\n }\n .commentBox .form-group * {\n     width:100%;\n }\n\n .commentList {\n     padding:0;\n     list-style:none;\n     max-height:200px;\n     overflow:auto;\n }\n .commentList li {\n     margin:0;\n     margin-top:10px;\n     display: -webkit-box;\n     display: -ms-flexbox;\n     display: flex;\n }\n .commentList li > div {\n     display:table-cell;\n }\n .commenterImage {\n     width:30px;\n     margin-right:5px;\n     height:100%;\n     float:left;\n }\n .commenterImage img {\n     width:100%;\n     border-radius:50%;\n }\n .commentText p {\n     margin:0;\n }\n .sub-text {\n     color:#0c0c0c;\n     font-family:verdana;\n     font-size:11px;\n }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -14962,7 +15176,6 @@ exports.default = {
             });
         },
         likeDislike: function likeDislike(isLoggedIn, type) {
-
             var checkLogin = this.checkLogin(isLoggedIn);
 
             $('#errorLogin div').remove();
@@ -15015,11 +15228,7 @@ exports.default = {
         },
 
         checkLogin: function checkLogin(isLoggedIn) {
-            if (isLoggedIn == 1) {
-                return true;
-            } else {
-                return false;
-            }
+            return isLoggedIn == 1;
         },
 
         getUserLogin: function getUserLogin() {
@@ -15029,24 +15238,24 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"list-inline video-js-responsive-container vjs-hd\">\n    <video id=\"my-video{{video.id}}\" class=\"video-js\" controls=\"\">\n        <source id=\"videoWebm\" type=\"video/webm\">\n        <source id=\"videoMp4\" type=\"video/mp4\">\n        <p class=\"vjs-no-js\">\n            To view this video please enable JavaScript, and consider upgrading to a web browser that\n            <a href=\"http://videojs.com/html5-video-support/\" target=\"_blank\">supports HTML5 video</a>\n        </p>\n    </video>\n</div>\n<h1>{{video.name}}</h1>\n<hr>\n<div id=\"errorLogin\"></div>\n<button type=\"button\" id=\"dislike-video{{video.id}}\" @click=\"likeDislike(isLoggedIn, 'dislike')\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i> {{ video.dislikes }}</button>\n<button type=\"button\" id=\"like-video{{video.id}}\" @click=\"likeDislike(isLoggedIn, 'like')\" class=\"btn btn-success\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i> {{ video.likes }}</button>\n<br>\n<h3>Comments</h3>\n<hr>\n<div class=\"commentBox\">\n    <ul class=\"commentList\">\n        <li v-for=\"comment in video.comments\" v-bind=\"getUser(comment.user_id, comment.id)\">\n            <div class=\"commenterImage\">\n                <img id=\"avatarComment{{comment.user_id}}{{comment.id}}\" src=\"\">\n            </div>\n            <div class=\"commentText\">\n                <p class=\"\">{{comment.comment}}</p><span class=\"date sub-text\" id=\"nameUserComment{{comment.user_id}}{{comment.id}}\"></span>\n                <div class=\"form-inline form-add-comment\" v-if=\"isLoggedIn == 1\">\n                    <div v-if=\"comment.user_id ==  getUserLogin().id\">\n                        <input class=\"form-control\" id=\"your-update-comment{{comment.id}}\" type=\"text\" placeholder=\"{{comment.comment}}\">\n                        <button @click=\"updateComment(comment.id)\" class=\"btn btn-success btn-comment\">Update</button>\n                        <button @click=\"deleteComment(comment.id)\" class=\"btn btn-danger btn-comment\">Delete</button>\n                    </div>\n                </div>\n            </div>\n        </li>\n    </ul>\n    <div class=\"form-inline form-add-comment\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" id=\"your-comments\" name=\"your-comments\" placeholder=\"Your comments\">\n        </div>\n        <div class=\"form-group\">\n            <button @click=\"commentVideo(isLoggedIn)\" class=\"btn btn-success btn-comment\">Add</button>\n        </div>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"list-inline video-js-responsive-container vjs-hd\">\n    <video id=\"my-video{{video.id}}\" class=\"video-js\" controls=\"\">\n        <source id=\"videoWebm\" type=\"video/webm\">\n        <source id=\"videoMp4\" type=\"video/mp4\">\n        <p class=\"vjs-no-js\">\n            To view this video please enable JavaScript, and consider upgrading to a web browser that\n            <a href=\"http://videojs.com/html5-video-support/\" target=\"_blank\">supports HTML5 video</a>\n        </p>\n    </video>\n</div>\n<h1>{{video.name}}</h1>\n<hr>\n<div id=\"errorLogin\"></div>\n<button type=\"button\" id=\"dislike-video{{video.id}}\" @click=\"likeDislike(isLoggedIn, 'dislike')\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i> {{ video.dislikes }}</button>\n<button type=\"button\" id=\"like-video{{video.id}}\" @click=\"likeDislike(isLoggedIn, 'like')\" class=\"btn btn-success\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i> {{ video.likes }}</button>\n<br>\n<h3>Comments</h3>\n<hr>\n<div class=\"commentBox\">\n    <ul class=\"commentList\">\n        <li v-for=\"comment in video.comments\" v-bind=\"getUser(comment.user_id, comment.id)\">\n            <div class=\"commenterImage\">\n                <img id=\"avatarComment{{comment.user_id}}{{comment.id}}\" src=\"\">\n            </div>\n            <div class=\"commentText\">\n                <span class=\"date sub-text\" id=\"nameUserComment{{comment.user_id}}{{comment.id}}\"></span>\n\n                <div v-if=\"(isLoggedIn != 1 || !(comment.user_id == getUserLogin().id || getUserLogin().level >= 100))\">\n                    <pre>{{comment.comment}}</pre>\n                </div>\n\n                <div class=\"form-inline form-add-comment edit-comment\" v-if=\"isLoggedIn == 1\">\n                    <div v-if=\"(comment.user_id == getUserLogin().id || getUserLogin().level >= 100)\">\n                        <textarea class=\"form-control\" id=\"your-update-comment{{comment.id}}\" type=\"text\" placeholder=\"\">{{comment.comment}}</textarea>\n                        <button @click=\"updateComment(comment.id)\" class=\"btn btn-success btn-comment\">Update</button>\n                        <button @click=\"deleteComment(comment.id)\" class=\"btn btn-danger btn-comment\">Delete</button>\n                    </div>\n                </div>\n            </div>\n        </li>\n    </ul>\n    <div class=\"form-inline form-add-comment new-comment\">\n        <div class=\"form-group\">\n            <textarea class=\"form-control\" type=\"text\" id=\"your-comments\" name=\"your-comments\" placeholder=\"Your comments\"></textarea>\n        </div>\n        <div class=\"form-group\">\n            <button @click=\"commentVideo(isLoggedIn)\" class=\"btn btn-success btn-comment\">Add</button>\n        </div>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n   .alert-danger {\n       background-color: #dd4b39;\n       border-color: #dd4b39;\n       color: white;\n   }\n\n.video-js, .vjs-control-bar{ color: #46FF62; }\n\n   .video-js-responsive-container.vjs-hd {\n       padding-top: 56.25%;\n   }\n   .video-js-responsive-container.vjs-sd {\n       padding-top: 75%;\n   }\n   .video-js-responsive-container {\n       width: 100%;\n       position: relative;\n   }\n   .video-js-responsive-container .video-js {\n       height: 100% !important;\n       width: 100% !important;\n       position: absolute;\n       top: 0;\n       left: 0;\n   }\n\n    .commentBox {\n        padding:10px;\n    }\n    .commentBox .form-group:first-child, .actionBox .form-group:first-child {\n        width:80%;\n    }\n    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {\n        width:18%;\n    }\n    .commentBox .form-group * {\n        width:100%;\n    }\n\n    .commentList {\n        padding:0;\n        list-style:none;\n        max-height:200px;\n        overflow:auto;\n    }\n    .commentList li {\n        margin:0;\n        margin-top:10px;\n    }\n    .commentList li > div {\n        display:table-cell;\n    }\n    .commenterImage {\n        width:30px;\n        margin-right:5px;\n        height:100%;\n        float:left;\n    }\n    .commenterImage img {\n        width:100%;\n        border-radius:50%;\n    }\n    .commentText p {\n        margin:0;\n    }\n    .sub-text {\n        color:#aaa;\n        font-family:verdana;\n        font-size:11px;\n    }\n"] = false
+    __vueify_insert__.cache["\n\n.alert-danger {\n    background-color: #dd4b39;\n    border-color: #dd4b39;\n    color: white;\n}\n\n.commentText {\n    width: 100%;\n}\n\n.form-add-comment.edit-comment textarea {\n    width: 100% !important;\n}\n\n.form-add-comment.new-comment textarea {\n    width: 100% !important;\n}\n\n.video-js, .vjs-control-bar{ color: #46FF62; }\n\n.video-js-responsive-container.vjs-hd {\n    padding-top: 56.25%;\n}\n.video-js-responsive-container.vjs-sd {\n    padding-top: 75%;\n}\n.video-js-responsive-container {\n    width: 100%;\n    position: relative;\n}\n.video-js-responsive-container .video-js {\n    height: 100% !important;\n    width: 100% !important;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n .commentBox {\n     padding:10px;\n }\n .commentBox .form-group:first-child, .actionBox .form-group:first-child {\n     width:80%;\n }\n .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {\n     width:18%;\n }\n .commentBox .form-group * {\n     width:100%;\n }\n\n .commentList {\n     padding:0;\n     list-style:none;\n     max-height:200px;\n     overflow:auto;\n }\n .commentList li {\n     margin:0;\n     margin-top:10px;\n     display: -webkit-box;\n     display: -ms-flexbox;\n     display: flex;\n }\n .commentList li > div {\n     display:table-cell;\n }\n .commenterImage {\n     width:30px;\n     margin-right:5px;\n     height:100%;\n     float:left;\n }\n .commenterImage img {\n     width:100%;\n     border-radius:50%;\n }\n .commentText p {\n     margin:0;\n }\n .sub-text {\n     color:#0c0c0c;\n     font-family:verdana;\n     font-size:11px;\n }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-7dc22656", module.exports)
+    hotAPI.createRecord("_v-0aa7ae68", module.exports)
   } else {
-    hotAPI.update("_v-7dc22656", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-0aa7ae68", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n#wrapper {\n    padding-left: 250px;\n    padding-top: 50px;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper {\n    margin-left: -250px;\n    left: 250px;\n    width: 250px;\n    background: #212121;\n    position: fixed;\n    height: 100%;\n    overflow-y: auto;\n    z-index: 1000;\n    transition: all 0.4s ease 0s;\n}\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 250px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n\n.sidebar-nav li {\n    line-height: 40px;\n    text-indent: 20px;\n}\n\n.sidebar-nav li a {\n    color: #999999;\n    display: block;\n    text-decoration: none;\n}\n\n.sidebar-nav li a:hover {\n    color: #fff;\n    background: rgba(255,255,255,0.2);\n    text-decoration: none;\n}\n\n.sidebar-nav li a:active,\n.sidebar-nav li a:focus {\n    text-decoration: none;\n}\n\n.sidebar-nav > .sidebar-brand a:hover {\n    color: #fff;\n    background: none;\n}\n\n@media (max-width:767px) {\n\n    #wrapper {\n        padding-left: 0;\n    }\n\n    #sidebar-wrapper {\n        left: 0;\n    }\n\n    #wrapper.active {\n        position: relative;\n        left: 250px;\n    }\n\n    #wrapper.active #sidebar-wrapper {\n        left: 250px;\n        width: 250px;\n        transition: all 0.4s ease 0s;\n    }\n\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n#wrapper {\n    padding-left: 250px;\n    padding-top: 50px;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper {\n    margin-left: -250px;\n    left: 250px;\n    width: 250px;\n    background: #293038;\n    position: fixed;\n    height: 100%;\n    overflow-y: auto;\n    z-index: 1000;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper * {\n    color: white;\n}\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 250px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n\n.sidebar-nav li {\n    line-height: 40px;\n    text-indent: 20px;\n}\n\n.sidebar-nav li a {\n    color: #FFFFFF;\n    display: block;\n    text-decoration: none;\n}\n\n.sidebar-nav li a:hover {\n    color: #fff;\n    background: rgba(255,255,255,0.2);\n    text-decoration: none;\n}\n\n.sidebar-nav li a:active,\n.sidebar-nav li a:focus {\n    text-decoration: none;\n}\n\n.sidebar-nav > .sidebar-brand a:hover {\n    color: #fff;\n    background: none;\n}\n\n@media (max-width:767px) {\n\n    #wrapper {\n        padding-left: 0;\n    }\n\n    #sidebar-wrapper {\n        left: 0;\n    }\n\n    #wrapper.active {\n        position: relative;\n        left: 250px;\n    }\n\n    #wrapper.active #sidebar-wrapper {\n        left: 250px;\n        width: 250px;\n        transition: all 0.4s ease 0s;\n    }\n\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -15073,24 +15282,24 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li><a href=\"/upload\"><span class=\"glyphicon glyphicon-home\"></span> My Home</a></li>\n        <li v-for=\"category in categories\">\n            <a v-link=\"{ path: '/category/' + category.name }\"><i class=\"fa fa-video-camera\" aria-hidden=\"true\"></i> {{category.name}}</a>\n        </li>\n        <hr>\n    </ul>\n</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li v-for=\"category in categories\">\n            <a v-link=\"{ path: '/category/' + category.name }\"><i class=\"fa fa-video-camera\" aria-hidden=\"true\"></i> {{category.name}}</a>\n        </li>\n        <hr>\n    </ul>\n</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n#wrapper {\n    padding-left: 250px;\n    padding-top: 50px;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper {\n    margin-left: -250px;\n    left: 250px;\n    width: 250px;\n    background: #212121;\n    position: fixed;\n    height: 100%;\n    overflow-y: auto;\n    z-index: 1000;\n    transition: all 0.4s ease 0s;\n}\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 250px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n\n.sidebar-nav li {\n    line-height: 40px;\n    text-indent: 20px;\n}\n\n.sidebar-nav li a {\n    color: #999999;\n    display: block;\n    text-decoration: none;\n}\n\n.sidebar-nav li a:hover {\n    color: #fff;\n    background: rgba(255,255,255,0.2);\n    text-decoration: none;\n}\n\n.sidebar-nav li a:active,\n.sidebar-nav li a:focus {\n    text-decoration: none;\n}\n\n.sidebar-nav > .sidebar-brand a:hover {\n    color: #fff;\n    background: none;\n}\n\n@media (max-width:767px) {\n\n    #wrapper {\n        padding-left: 0;\n    }\n\n    #sidebar-wrapper {\n        left: 0;\n    }\n\n    #wrapper.active {\n        position: relative;\n        left: 250px;\n    }\n\n    #wrapper.active #sidebar-wrapper {\n        left: 250px;\n        width: 250px;\n        transition: all 0.4s ease 0s;\n    }\n\n}\n"] = false
+    __vueify_insert__.cache["\n#wrapper {\n    padding-left: 250px;\n    padding-top: 50px;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper {\n    margin-left: -250px;\n    left: 250px;\n    width: 250px;\n    background: #293038;\n    position: fixed;\n    height: 100%;\n    overflow-y: auto;\n    z-index: 1000;\n    transition: all 0.4s ease 0s;\n}\n\n#sidebar-wrapper * {\n    color: white;\n}\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 250px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n\n.sidebar-nav li {\n    line-height: 40px;\n    text-indent: 20px;\n}\n\n.sidebar-nav li a {\n    color: #FFFFFF;\n    display: block;\n    text-decoration: none;\n}\n\n.sidebar-nav li a:hover {\n    color: #fff;\n    background: rgba(255,255,255,0.2);\n    text-decoration: none;\n}\n\n.sidebar-nav li a:active,\n.sidebar-nav li a:focus {\n    text-decoration: none;\n}\n\n.sidebar-nav > .sidebar-brand a:hover {\n    color: #fff;\n    background: none;\n}\n\n@media (max-width:767px) {\n\n    #wrapper {\n        padding-left: 0;\n    }\n\n    #sidebar-wrapper {\n        left: 0;\n    }\n\n    #wrapper.active {\n        position: relative;\n        left: 250px;\n    }\n\n    #wrapper.active #sidebar-wrapper {\n        left: 250px;\n        width: 250px;\n        transition: all 0.4s ease 0s;\n    }\n\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-388374a1", module.exports)
+    hotAPI.createRecord("_v-430b304f", module.exports)
   } else {
-    hotAPI.update("_v-388374a1", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-430b304f", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],15:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n#navigation {\n    background: #282828;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("\n#navigation {\n    background: #373d41;\n}\n#navigation * {\n    color: #EEEEEE;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -15139,22 +15348,22 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"navigation\" class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <button type=\"button\" class=\"navbar-toggle pull-left\" v-on:click=\"toogleSideMenu\">\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n        </button>\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <search-form></search-form>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li v-if=\"isLoggedIn != 1\"><user-login></user-login></li>\n                <li v-if=\"isLoggedIn != 1\"><user-register></user-register></li>\n                <li v-else=\"\"><a href=\"/upload\"><span class=\"glyphicon glyphicon-home\"></span> {{user.name}}</a></li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"navigation\" class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <button type=\"button\" class=\"navbar-toggle pull-left\" v-on:click=\"toogleSideMenu\">\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n        </button>\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <search-form></search-form>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li v-if=\"isLoggedIn != 1\"><user-login></user-login></li>\n                <li v-if=\"isLoggedIn != 1\"><user-register></user-register></li>\n                <li v-else=\"\"><a href=\"/profile\"><span class=\"glyphicon glyphicon-home\"></span> {{user.name}}</a></li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n#navigation {\n    background: #282828;\n}\n"] = false
+    __vueify_insert__.cache["\n#navigation {\n    background: #373d41;\n}\n#navigation * {\n    color: #EEEEEE;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-66051b65", module.exports)
+    hotAPI.createRecord("_v-6122ce12", module.exports)
   } else {
-    hotAPI.update("_v-66051b65", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-6122ce12", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./search-form.vue":12,"./user-login.vue":13,"./user-register.vue":14,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
+},{"./search-form.vue":16,"./user-login.vue":17,"./user-register.vue":18,"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],16:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n#searchForm {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 256px;\n            flex: 0 0 256px;\n    background: transparent;\n    margin-top: 10px;\n}\n\n#searchForm>input{\n    width: 250px;\n    height: 30px;\n    margin-top: 0;\n    border-radius: 12px;\n    border: 2px solid #181818;\n    font-family: 'Raleway', sans-serif;\n    color: #303030;\n    font-size: 13px;\n}\n\n#searchForm>input:focus {\n    outline: none;\n}\n")
 'use strict';
@@ -15187,12 +15396,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-05346ec8", module.exports)
+    hotAPI.createRecord("_v-eb695ea4", module.exports)
   } else {
-    hotAPI.update("_v-05346ec8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-eb695ea4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],17:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.user-login{\n    font-family: 'Raleway', sans-serif;\n    font-size: 13px;\n}\n")
 "use strict";
@@ -15207,12 +15416,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-5a500438", module.exports)
+    hotAPI.createRecord("_v-29f82b92", module.exports)
   } else {
-    hotAPI.update("_v-5a500438", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-29f82b92", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],18:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.user-register{\n    font-family: 'Raleway', sans-serif;\n    font-size: 13px;;\n}\n")
 "use strict";
@@ -15227,12 +15436,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-48f8bf10", module.exports)
+    hotAPI.createRecord("_v-75b127ec", module.exports)
   } else {
-    hotAPI.update("_v-48f8bf10", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-75b127ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],15:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":2,"vueify/lib/insert-css":6}],19:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -15259,6 +15468,22 @@ var _videoView = require('./components/main-wrapper/video-view.vue');
 
 var _videoView2 = _interopRequireDefault(_videoView);
 
+var _userManager = require('./components/main-wrapper/user-manager.vue');
+
+var _userManager2 = _interopRequireDefault(_userManager);
+
+var _userEditor = require('./components/main-wrapper/user-editor.vue');
+
+var _userEditor2 = _interopRequireDefault(_userEditor);
+
+var _categoryManager = require('./components/main-wrapper/category-manager.vue');
+
+var _categoryManager2 = _interopRequireDefault(_categoryManager);
+
+var _categoryEditor = require('./components/main-wrapper/category-editor.vue');
+
+var _categoryEditor2 = _interopRequireDefault(_categoryEditor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueResource2.default);
@@ -15272,7 +15497,7 @@ router.map({
             template: '<router-view></router-view>'
         },
         subRoutes: {
-            '/best': {
+            '/': {
                 component: _index2.default
             },
             '/videos/:id': {
@@ -15284,19 +15509,30 @@ router.map({
             '/search/:name': {
                 component: _index2.default
             }
+            // '/users/manager/': {
+            //    component: userManager,
+            // },
+            // '/users/editor/:id': {
+            //    component: userEditor,
+            // },
+            // '/categories/manager/': {
+            //    component: categoryManager,
+            // },
+            // '/categories/editor/:id': {
+            //    component: categoryEditor,
+            // },
         }
     }
 });
 
 router.redirect({
-    '*': '/best',
-    '/': '/best'
+    '*': '/'
 });
 
 router.start(_app2.default, 'app');
 
 _vue2.default.http.headers.common['X-Authorization'] = $('meta[name=api_token]').attr("content");
 
-},{"./app.vue":7,"./components/main-wrapper/index.vue":8,"./components/main-wrapper/video-view.vue":9,"vue":5,"vue-resource":3,"vue-router":4}]},{},[15]);
+},{"./app.vue":7,"./components/main-wrapper/category-editor.vue":8,"./components/main-wrapper/category-manager.vue":9,"./components/main-wrapper/index.vue":10,"./components/main-wrapper/user-editor.vue":11,"./components/main-wrapper/user-manager.vue":12,"./components/main-wrapper/video-view.vue":13,"vue":5,"vue-resource":3,"vue-router":4}]},{},[19]);
 
 //# sourceMappingURL=main.js.map

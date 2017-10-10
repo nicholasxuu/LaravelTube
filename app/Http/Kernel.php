@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'apiguard'   => \Chrisbjr\ApiGuard\Http\Middleware\ApiGuard::class,
+        'user.level' => \App\Http\Middleware\CheckUserLevel::class,
     ];
 }

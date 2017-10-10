@@ -126,12 +126,12 @@ class LikeDislikeController extends ApiGuardController
 
         if ($check == 0) {
             $like = $this->likeDislike->create($request->all());
-            $this->callEventPushLikeDislike($like);
+//            $this->callEventPushLikeDislike($like);
 
             return $this->response->withItem($like, $this->likeDislikeTransformer);
         } else {
             $like = $this->likeDislike->findOrFail($check);
-            $this->callEventPushLikeDislike($like);
+//            $this->callEventPushLikeDislike($like);
             if ($request->input('type') != $like->type) {
                 $like = $this->likeDislike->update($request->all(), $like->id);
 

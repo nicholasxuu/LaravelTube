@@ -8,7 +8,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/upload') }}"><b>Laravel</b>Tube</a>
+            <a href="{{ url('/') }}">TitleHere</a>
         </div><!-- /.login-logo -->
 
     @if (count($errors) > 0)
@@ -47,9 +47,7 @@
             </div><!-- /.col -->
         </div>
     </form>
-
-    @include('auth.partials.social_login')
-
+        s
     <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
     <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
 

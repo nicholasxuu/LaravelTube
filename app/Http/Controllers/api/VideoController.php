@@ -183,6 +183,10 @@ class VideoController extends ApiGuardController
      */
     public function update(Request $request, $id)
     {
+        if (!$this->checkModPermission($request->user(), $id)) {
+            return response('Unauthorized.', 401);
+        }
+
         $video = $this->video->findOrFail($id);
 
         $this->video->update($request->all(), $id);
@@ -195,8 +199,12 @@ class VideoController extends ApiGuardController
      *
      * @param $id
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        if (!$this->checkModPermission($request->user(), $id)) {
+            return response('Unauthorized.', 401);
+        }
+
         $video = $this->video->findOrFail($id);
 
         $nameFile = str_replace('storage/', '', $video->path);
@@ -204,6 +212,21 @@ class VideoController extends ApiGuardController
         Storage::disk('public')->delete([$nameFile.'.mp4', $nameFile.'.webm']);
 
         $this->video->delete($id);
+    }
+
+    /**
+     * @param $user
+     * @param $userId
+     * @return bool
+     */
+    protected function checkModPermission($user, $videoId)
+    {
+        $video = $this->video->findOrFail($videoId);
+
+        if ($user->level <= 100 && $user->id !== $video->user_id) {
+            return false;
+        }
+        return true;
     }
 
     /**

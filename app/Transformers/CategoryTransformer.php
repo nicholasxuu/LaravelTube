@@ -2,8 +2,9 @@
 
 namespace App\Transformers;
 
+use League\Fractal\TransformerAbstract;
 
-class CategoryTransformer extends Transformer
+class CategoryTransformer extends TransformerAbstract
 {
     /**
      * @param $category

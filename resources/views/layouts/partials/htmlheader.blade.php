@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title> LaravelTube </title>
+    <title>TitleHere</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {{--User--}}
@@ -21,7 +21,7 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link href="{{ asset('/css/skins/skin-green.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/skins/skin-black.css') }}" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="{{ asset('/plugins/iCheck/square/green.css') }}" rel="stylesheet" type="text/css" />
 

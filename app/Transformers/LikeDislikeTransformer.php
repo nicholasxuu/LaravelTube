@@ -2,10 +2,12 @@
 
 namespace App\Transformers;
 
+use League\Fractal\TransformerAbstract;
+
 /**
  * Class LikeDislikeTransformer.
  */
-class LikeDislikeTransformer extends Transformer
+class LikeDislikeTransformer extends TransformerAbstract
 {
     /**
      * @param $likeDislike

@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li v-if="isLoggedIn != 1"><user-login></user-login></li>
                     <li v-if="isLoggedIn != 1"><user-register></user-register></li>
-                    <li v-else><a href="/upload"><span class="glyphicon glyphicon-home"></span> {{user.name}}</a></li>
+                    <li v-else><a href="/profile"><span class="glyphicon glyphicon-home"></span> {{user.name}}</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -60,6 +60,9 @@
 
 <style>
     #navigation {
-        background: #282828;
+        background: #373d41;
+    }
+    #navigation * {
+        color: #EEEEEE;
     }
 </style>

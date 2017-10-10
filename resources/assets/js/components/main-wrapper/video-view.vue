@@ -24,10 +24,15 @@
                     <img id="avatarComment{{comment.user_id}}{{comment.id}}" src="" />
                 </div>
                 <div class="commentText">
-                    <p class="">{{comment.comment}}</p><span class="date sub-text" id="nameUserComment{{comment.user_id}}{{comment.id}}"></span>
-                    <div class="form-inline form-add-comment" v-if="isLoggedIn == 1">
-                        <div v-if="comment.user_id ==  getUserLogin().id">
-                            <input class="form-control" id="your-update-comment{{comment.id}}" type="text" placeholder="{{comment.comment}}" />
+                    <span class="date sub-text" id="nameUserComment{{comment.user_id}}{{comment.id}}"></span>
+
+                    <div  v-if="(isLoggedIn != 1 || !(comment.user_id == getUserLogin().id || getUserLogin().level >= 100))">
+                        <pre>{{comment.comment}}</pre>
+                    </div>
+
+                    <div class="form-inline form-add-comment edit-comment" v-if="isLoggedIn == 1">
+                        <div v-if="(comment.user_id == getUserLogin().id || getUserLogin().level >= 100)">
+                            <textarea class="form-control" id="your-update-comment{{comment.id}}" type="text" placeholder="">{{comment.comment}}</textarea>
                             <button @click="updateComment(comment.id)" class="btn btn-success btn-comment">Update</button>
                             <button @click="deleteComment(comment.id)" class="btn btn-danger btn-comment">Delete</button>
                         </div>
@@ -35,9 +40,9 @@
                 </div>
             </li>
         </ul>
-        <div class="form-inline form-add-comment">
+        <div class="form-inline form-add-comment new-comment">
             <div class="form-group">
-                <input class="form-control" type="text" id="your-comments" name="your-comments" placeholder="Your comments" />
+                <textarea class="form-control" type="text" id="your-comments" name="your-comments" placeholder="Your comments"></textarea>
             </div>
             <div class="form-group">
                 <button @click="commentVideo(isLoggedIn)" class="btn btn-success btn-comment">Add</button>
@@ -74,7 +79,6 @@
                 });
             },
             likeDislike: function(isLoggedIn, type){
-
                 var checkLogin= this.checkLogin(isLoggedIn);
 
                 $('#errorLogin div').remove();
@@ -130,15 +134,11 @@
             },
 
             checkLogin: function(isLoggedIn){
-                if(isLoggedIn == 1){
-                    return true;
-                } else{
-                    return false;
-                }
+                return isLoggedIn == 1;
             },
 
             getUserLogin: function(){
-                var user=jQuery.parseJSON($('meta[name=user]').attr("content"));
+                const user = jQuery.parseJSON($('meta[name=user]').attr("content"));
                 return user;
             }
         }
@@ -153,7 +153,19 @@
         color: white;
     }
 
- .video-js, .vjs-control-bar{ color: #46FF62; }
+    .commentText {
+        width: 100%;
+    }
+
+    .form-add-comment.edit-comment textarea {
+        width: 100% !important;
+    }
+
+    .form-add-comment.new-comment textarea {
+        width: 100% !important;
+    }
+
+    .video-js, .vjs-control-bar{ color: #46FF62; }
 
     .video-js-responsive-container.vjs-hd {
         padding-top: 56.25%;
@@ -195,6 +207,7 @@
      .commentList li {
          margin:0;
          margin-top:10px;
+         display: flex;
      }
      .commentList li > div {
          display:table-cell;
@@ -213,7 +226,7 @@
          margin:0;
      }
      .sub-text {
-         color:#aaa;
+         color:#0c0c0c;
          font-family:verdana;
          font-size:11px;
      }

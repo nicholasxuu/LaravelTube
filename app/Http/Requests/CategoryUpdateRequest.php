@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class CategoryDeleteRequest extends Request
+class CategoryUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class CategoryDeleteRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required',
+            'name'  => 'required',
         ];
     }
 }

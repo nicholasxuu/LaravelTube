@@ -5,7 +5,7 @@
 @endsection
 
 @section('customs_scripts')
-    <script src="{{ asset('js/my-videos.js') }}"></script>
+    <script src="{{ asset('js/video-manager.js') }}"></script>
 @endsection
 
 @section('main-content')
