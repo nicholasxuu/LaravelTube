@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * @deprecated
+ * Class ApiController
+ * @package App\Http\Controllers
+ */
 class ApiController extends Controller
 {
     /**

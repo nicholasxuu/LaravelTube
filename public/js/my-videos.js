@@ -11844,7 +11844,6 @@ new _vue2.default({
                 this.getMyVideos(this.user.id);
             });
         },
-
         deleteVideo: function deleteVideo(id) {
             this.$http.delete('/api/videos/' + id).then(function () {
                 this.getMyVideos(this.user.id);

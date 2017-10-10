@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title> LaravelTube </title>
+    <title>TitleHere</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {{--User--}}

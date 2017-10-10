@@ -89,7 +89,6 @@ class CommentController extends ApiGuardController
      * Update comment.
      *
      * @param CommentUpdateRequest $request
-     * @param $id
      *
      * @return mixed
      */
@@ -105,7 +104,7 @@ class CommentController extends ApiGuardController
     /**
      * Delete comment.
      *
-     * @param $id
+     * @param CommentDeleteRequest $request
      */
     public function delete(CommentDeleteRequest $request)
     {

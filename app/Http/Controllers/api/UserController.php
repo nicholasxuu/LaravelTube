@@ -23,7 +23,7 @@ class UserController extends ApiGuardController
      */
     protected $apiMethods = [
         'getAllUsers' => [
-            'keyAuthentication' => false,
+            'level' => 100,
         ],
         'show' => [
             'keyAuthentication' => false,

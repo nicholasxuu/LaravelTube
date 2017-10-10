@@ -35,12 +35,13 @@ class CategoryController extends ApiGuardController
             'keyAuthentication' => false,
         ],
         'store' => [
-            'limits' => [
-                'key' => [
-                    'increment' => '1 minute',
-                    'limit'     => 10,
-                ],
-            ],
+            'level' => 100,
+        ],
+        'update' => [
+            'level' => 100,
+        ],
+        'destroy' => [
+            'level' => 100,
         ],
     ];
 

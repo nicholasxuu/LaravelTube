@@ -1,10 +1,15 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/10/10
+ * Time: 11:44
+ */
 
 namespace App\Http\Controllers;
 
 
-class CategoryManagerController extends Controller
+class VideoManagerController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,16 +21,9 @@ class CategoryManagerController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return Response
      */
     public function index()
     {
-        return view('category-manager');
-    }
-
-    public function editor($id)
-    {
-        return view('category-editor', ['id' => $id]);
+        return view('video-manager');
     }
 }

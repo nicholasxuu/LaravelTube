@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>LaravelTube</title>
+    <title>TitleHere</title>
     
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
 

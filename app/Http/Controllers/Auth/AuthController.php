@@ -29,7 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/upload';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -82,7 +82,7 @@ class AuthController extends Controller
      */
     private function createUserApiKey(User $user)
     {
-        $apiKey = ApiKey::make($user->id);
+        $apiKey = ApiKey::make($user->id, $user->level);
         $user->apiKey()->save($apiKey);
     }
 }

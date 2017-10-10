@@ -19,8 +19,8 @@ new Vue({
                 this.$set('categories', response.data.data);
             });
         },
-        getMyVideos: function(id){
-            this.$http.get('/api/videos/user/'+id).then(function (response) {
+        getAllVideos: function(){
+            this.$http.get('/api/videos/').then(function (response) {
                 this.$set('videos', response.data.data);
             });
         },
@@ -39,7 +39,7 @@ new Vue({
     },
 
     ready: function() {
-        this.getMyVideos(this.user.id);
+        this.getAllVideos();
         this.getCategories();
     }
 });

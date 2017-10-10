@@ -33,18 +33,18 @@ router.map({
             '/search/:name': {
                 component: videos,
             },
-	        '/users/manager/': {
-                component: userManager,
-	        },
-	        '/users/editor/:id': {
-                component: userEditor,
-	        },
-	        '/categories/manager/': {
-		        component: categoryManager,
-	        },
-	        '/categories/editor/:id': {
-		        component: categoryEditor,
-	        },
+	        // '/users/manager/': {
+             //    component: userManager,
+	        // },
+	        // '/users/editor/:id': {
+             //    component: userEditor,
+	        // },
+	        // '/categories/manager/': {
+		     //    component: categoryManager,
+	        // },
+	        // '/categories/editor/:id': {
+		     //    component: categoryEditor,
+	        // },
         }
     }
 });

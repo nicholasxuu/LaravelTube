@@ -32,4 +32,5 @@ elixir(function(mix) {
 	mix.browserify('category-editor.js');
 	mix.browserify('user-manager.js');
 	mix.browserify('user-editor.js');
+	mix.browserify('video-manager.js');
 });
