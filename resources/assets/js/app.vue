@@ -16,10 +16,10 @@
 </template>
 <style>
     body{
-        background-color: #303030;
+        background-color: #EEEEEE;
     }
     *{
-        color: white;
+        color: black;
         font-family: 'Raleway', sans-serif;
     }
 
@@ -33,10 +33,10 @@
     }
 
     .videoList:hover{
-        border: 1px solid #46FF62;
+        /*border: 1px solid #46FF62;*/
     }
     .videoList{
-        background-color: #101010;
+        background-color: #DDDDDD;
     }
 </style>
 <script>

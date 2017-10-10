@@ -43,12 +43,16 @@
         margin-left: -250px;
         left: 250px;
         width: 250px;
-        background: #212121;
+        background: #293038;
         position: fixed;
         height: 100%;
         overflow-y: auto;
         z-index: 1000;
         transition: all 0.4s ease 0s;
+    }
+
+    #sidebar-wrapper * {
+        color: white;
     }
 
     .sidebar-nav {
@@ -66,7 +70,7 @@
     }
 
     .sidebar-nav li a {
-        color: #999999;
+        color: #FFFFFF;
         display: block;
         text-decoration: none;
     }

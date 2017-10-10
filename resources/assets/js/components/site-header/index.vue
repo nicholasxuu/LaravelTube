@@ -60,6 +60,9 @@
 
 <style>
     #navigation {
-        background: #282828;
+        background: #373d41;
+    }
+    #navigation * {
+        color: #EEEEEE;
     }
 </style>
